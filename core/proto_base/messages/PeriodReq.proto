@@ -1,0 +1,9 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+import "google/protobuf/wrappers.proto";
+
+message PeriodReq {
+  google.protobuf.Int64Value datesFrom = 1;
+  google.protobuf.Int64Value datesTo = 2;
+}

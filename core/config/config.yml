@@ -1,0 +1,64 @@
+deploy: 'local' # Deployment environment, can be 'local', 'staging', or 'production'
+telegram: # Telegram settings
+  api_url: 'https://api.telegram.org/' # Telegram API url
+  bot_token: "7472420198:AAHihZI6L7v0PA2UwO_I4Y6SznvZlmaVaX8" # Telegram bot token
+gpt:
+  gpt_api_key: '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' # OpenAI API key for GPT integration
+  gpt_api_url: 'https://api.openai.com/v1'
+  gpt_assist_id: 'asst_8RiZVRf96S9A015LVxm8lVOR' # Assistant ID for a specific GPT instance or model
+  gpt_model: 'gpt-4o-mini'
+exchangerate:
+  exchangerate_api_key: '63c8615fa4e2bd6573fb3a51'
+  exchangerate_api_url: 'https://v6.exchangerate-api.com/v6/'
+  base_currency_code: 'usd'
+td_lib:
+  api_id:
+  apu_hash:
+tinkoff:
+  api_url: # Tinkoff api url
+  terminal_key: # Tinkoff terminal key
+  password: # Tinkoff password
+  test_card_number: # Tinkoff test card number
+  test_card_cvc: # Tinkoff test card CVC
+  test_card_exp_date: # Tinkoff test card expiration date
+storage:
+  host: "localhost"
+  port: "5432"
+  dbname: "zodiak"
+  username: "postgres"
+  password: "root"
+  ssl: "disable"
+redis:
+  addr: "127.0.0.1" # Redis server address, typically 'localhost' or a remote server IP
+  username: "" # Username for the Redis server (if required)
+  password: "" # Password for the Redis server (if required)
+  port: "6379" # Redis server port, default is 6379
+secure_params:
+  jwt_secret: "test"
+  salt: "test"
+  session_token_hours_life: 8
+  admin_session_token_hours_life: 72
+server:
+  rest_admin_service: # Admin service address
+    bind: '0.0.0.0'
+    port: 10001
+  chats_service: # Chats service address
+    bind: '0.0.0.0'
+    max_http_buffer_size: 1000
+    message_timeout: 5
+    port: 10002
+  gpt_service: # GPT service address
+    bind: '0.0.0.0'
+    internal: '0.0.0.0'
+    port: 10003
+  payment_service: # Payment service address
+    bind: '0.0.0.0'
+    internal: '0.0.0.0'
+    port: 10004
+  rest_user_service: # User API service address
+    bind: '0.0.0.0'
+    port: 10005
+  user_service: # User API service address
+    bind: '0.0.0.0'
+    internal: '0.0.0.0'
+    port: 10006

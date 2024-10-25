@@ -1,0 +1,8 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+message FilteringMap {
+    string key = 1;
+    string value = 2;
+}

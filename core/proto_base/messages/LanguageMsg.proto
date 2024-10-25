@@ -1,0 +1,26 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "google/protobuf/wrappers.proto";
+
+message LanguageMsg {
+  google.protobuf.StringValue code_639_1 = 1;
+  google.protobuf.StringValue code_639_2_t = 2;
+  google.protobuf.StringValue code_639_2_b= 3;
+  google.protobuf.StringValue code_639_3= 4;
+  google.protobuf.StringValue base_name= 5;
+  google.protobuf.StringValue orig_name= 6;
+  google.protobuf.BoolValue is_active = 7;
+}
+
+message LanguageMsgList {
+  repeated LanguageMsg languages = 1;
+}
+
+message LanguageMsgReq {
+  LanguageMsg paramsFiltering = 1;
+  google.protobuf.UInt64Value offset = 2;
+  google.protobuf.UInt64Value limit = 3;
+  map<string, string> likeFields = 4;
+}

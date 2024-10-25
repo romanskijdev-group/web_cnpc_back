@@ -1,0 +1,11 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "messages/TokenInfo.proto";
+import "messages/UserParamsLogin.proto";
+
+message LogInInfoRes {
+    TokenInfo tokenAuth = 1;
+    UserParamsLogin params = 2;
+}

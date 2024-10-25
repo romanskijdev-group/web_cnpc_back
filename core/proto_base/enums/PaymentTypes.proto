@@ -1,0 +1,10 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+
+enum PaymentTypes {
+    PaymentTypes_NULL = 0; 
+    PaymentTypes_internal = 1; 
+    PaymentTypes_external = 2; 
+}

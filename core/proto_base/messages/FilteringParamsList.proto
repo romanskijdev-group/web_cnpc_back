@@ -1,0 +1,11 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+import "google/protobuf/wrappers.proto";
+
+message FilteringParamsList {
+    google.protobuf.UInt64Value Offset =1;
+    google.protobuf.UInt64Value  Limit =2;
+    map<string, string> LikeFields =3;
+    map<string, bool> OrSearchFields =4;
+}

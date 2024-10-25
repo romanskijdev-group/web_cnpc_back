@@ -1,0 +1,10 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "google/protobuf/wrappers.proto";
+
+message UserParamsLogin {
+    google.protobuf.StringValue language = 1;
+    google.protobuf.BoolValue isNewUser   = 2;
+}
