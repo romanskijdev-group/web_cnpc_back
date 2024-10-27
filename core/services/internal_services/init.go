@@ -1,9 +1,9 @@
 package servicesinternal
 
 import (
-	gormmodule "cnpc_backend/core/services/internal/gorm"
-	pgxpool2 "cnpc_backend/core/services/internal/pgxpool"
-	redismodule "cnpc_backend/core/services/internal/redis"
+	gormmodule "cnpc_backend/core/services/internal_services/gorm"
+	pgxpool2 "cnpc_backend/core/services/internal_services/pgxpool"
+	redismodule "cnpc_backend/core/services/internal_services/redis"
 	"database/sql"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"gorm.io/gorm"

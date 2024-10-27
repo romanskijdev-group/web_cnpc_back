@@ -1,14 +1,14 @@
 package dbutils
 
 import (
+	"cnpc_backend/core/typescore"
 	"database/sql"
 	"errors"
 	"github.com/jackc/pgx/v5"
 	"reflect"
-	"zod_backend_dev/core/models"
 )
 
-func ScanRowsToStructRow(row pgx.Row, dest interface{}) *models.WEvent {
+func ScanRowsToStructRow(row pgx.Row, dest interface{}) *typescore.WEvent {
 	val := reflect.ValueOf(dest).Elem()
 	typ := val.Type()
 
@@ -17,14 +17,14 @@ func ScanRowsToStructRow(row pgx.Row, dest interface{}) *models.WEvent {
 	err := row.Scan(scanArgs...)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) { // Проверка на отсутствие результатов
-			return &models.WEvent{
+			return &typescore.WEvent{
 				Err:  err,
 				Text: "no_found_obj", // Возвращаем ошибку "объект не найден"
 			}
 		}
 
 		// fieldInfo := buildFieldInfoString(val, typ)
-		return &models.WEvent{
+		return &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}

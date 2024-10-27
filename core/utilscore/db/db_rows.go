@@ -1,19 +1,19 @@
 package dbutils
 
 import (
+	"cnpc_backend/core/typescore"
 	"encoding/json"
 	"errors"
 	"github.com/jackc/pgx/v5"
 	"reflect"
-	"zod_backend_dev/core/models"
 )
 
 // ScanRowsToStructRows сканирует строки из pgx.Rows в срез структур.
-func ScanRowsToStructRows(rows pgx.Rows, dest interface{}) *models.WEvent {
+func ScanRowsToStructRows(rows pgx.Rows, dest interface{}) *typescore.WEvent {
 	val := reflect.ValueOf(dest)
 	if val.Kind() != reflect.Ptr || val.Elem().Kind() != reflect.Struct {
 		err := errors.New("dest must be a pointer to a struct")
-		return &models.WEvent{
+		return &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
@@ -29,7 +29,7 @@ func ScanRowsToStructRows(rows pgx.Rows, dest interface{}) *models.WEvent {
 
 	err := rows.Scan(args...)
 	if err != nil {
-		return &models.WEvent{
+		return &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
