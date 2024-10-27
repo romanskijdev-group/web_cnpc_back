@@ -1,12 +1,12 @@
 package dbutils
 
 import (
+	"cnpc_backend/core/typescore"
 	"errors"
 	"fmt"
 	"github.com/Masterminds/squirrel"
 	"reflect"
 	"strings"
-	"zod_backend_dev/core/models"
 )
 
 // возвращает список полей структуры
@@ -139,7 +139,7 @@ func processField(field reflect.Value, dbTag string) squirrel.Sqlizer {
 }
 
 // Создаем два списка для хранения названий столбцов и соответствующих значений
-func GenerateInsertRequest(query squirrel.InsertBuilder, v reflect.Value, t reflect.Type, includeReturning bool) (*string, []interface{}, *models.WEvent) {
+func GenerateInsertRequest(query squirrel.InsertBuilder, v reflect.Value, t reflect.Type, includeReturning bool) (*string, []interface{}, *typescore.WEvent) {
 	var columns []string
 	var values []interface{}
 	var columnsReturn []string
@@ -167,7 +167,7 @@ func GenerateInsertRequest(query squirrel.InsertBuilder, v reflect.Value, t refl
 
 	// Если нет ненулевых полей, возвращаем ошибку
 	if len(columns) == 0 {
-		return nil, nil, &models.WEvent{
+		return nil, nil, &typescore.WEvent{
 			Err:  errors.New("all fields are zero"),
 			Text: "db_system_error",
 		}
@@ -186,13 +186,13 @@ func GenerateInsertRequest(query squirrel.InsertBuilder, v reflect.Value, t refl
 	// Генерируем SQL и аргументы
 	sql, args, err := query.ToSql()
 	if err != nil {
-		return nil, nil, &models.WEvent{
+		return nil, nil, &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
 	}
 	if sql == "" {
-		return nil, nil, &models.WEvent{
+		return nil, nil, &typescore.WEvent{
 			Err:  errors.New("sql is empty"),
 			Text: "db_system_error",
 		}

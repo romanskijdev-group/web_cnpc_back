@@ -1,6 +1,6 @@
 package typescore
 
-import awss3api "cnpc_backend/core/services/external/aws_s3_api"
+import awss3api "cnpc_backend/core/services/external_services/aws_s3_api"
 
 type Config struct {
 	Deploy       string                   `yaml:"deploy" env-default:"local"`
