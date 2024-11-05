@@ -13,7 +13,7 @@ import (
 )
 
 type WrapHandlerParams struct {
-	CustomFunc               func(w http.ResponseWriter, r *http.Request, userObj *typescore.UsersProviderControl) (interface{}, *uint64, *typescore.WEvent)
+	CustomFunc               func(w http.ResponseWriter, r *http.Request, userObj *typescore.UsersProviderControl, detectorIp *typescore.DetectorIPStruct) (interface{}, *uint64, *typescore.WEvent)
 	Ipc                      *types.InternalProviderControl // ipc
 	UserAuthorizationChecked bool                           // проверка авторизации пользователя
 	ModuleRestAuth           *restauthcore.ModuleRestAuth
@@ -35,7 +35,7 @@ func WrapHandlerF(p WrapHandlerParams) http.HandlerFunc {
 			return
 		}
 
-		data, totalCount, errW := p.CustomFunc(w, r, userObj)
+		data, totalCount, errW := p.CustomFunc(w, r, userObj, nil)
 		if errW != nil {
 			sendResponse(w, response, errW)
 			return

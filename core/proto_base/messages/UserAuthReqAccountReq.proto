@@ -1,0 +1,21 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "google/protobuf/wrappers.proto";
+import "enums/TypeAuth.proto";
+import "messages/DetectorIPStruct.proto";
+
+message UserAuthReqAccountReq {
+    google.protobuf.StringValue Email   =1;
+	google.protobuf.StringValue TemporaryPassword   =2;
+	google.protobuf.Int64Value TelegramID       =3;
+	google.protobuf.StringValue EmailCode    =5;
+	google.protobuf.StringValue SystemID    =6;
+
+	google.protobuf.StringValue Code    =7;
+	google.protobuf.StringValue Secret   =8;
+
+	TypeAuth AuthType   =10;
+	DetectorIPStruct DetectorIPStruct =12;
+}

@@ -1,0 +1,249 @@
+code,default_name,flag,is_active,priority_index
+ad,Andorra,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AD.png,True,0
+ae,United Arab Emirates,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AE.png,True,1
+af,Afghanistan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AF.png,True,2
+ag,Antigua and Barbuda,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AG.png,True,3
+ai,Anguilla,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AI.png,True,4
+al,Albania,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AL.png,True,5
+am,Armenia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AM.png,True,6
+ao,Angola,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AO.png,True,7
+aq,Antarctica,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AQ.png,True,8
+ar,Argentina,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AR.png,True,9
+as,American Samoa,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AS.png,True,10
+at,Austria,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AT.png,True,11
+au,Australia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AU.png,True,12
+aw,Aruba,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AW.png,True,13
+ax,Aland Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AX.png,True,14
+az,Azerbaijan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/AZ.png,True,15
+ba,Bosnia and Herzegovina,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BA.png,True,16
+bb,Barbados,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BB.png,True,17
+bd,Bangladesh,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BD.png,True,18
+be,Belgium,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BE.png,True,19
+bf,Burkina Faso,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BF.png,True,20
+bg,Bulgaria,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BG.png,True,21
+bh,Bahrain,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BH.png,True,22
+bi,Burundi,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BI.png,True,23
+bj,Benin,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BJ.png,True,24
+bl,Saint Barthélemy,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BL.png,True,25
+bm,Bermuda,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BM.png,True,26
+bn,Brunei Darussalam,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BN.png,True,27
+bo,Plurinational State of Bolivia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BO.png,True,28
+bq,"Bonaire, Sint Eustatius and Saba",https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BQ.png,True,29
+br,Brazil,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BR.png,True,30
+bs,Bahamas,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BS.png,True,31
+bt,Bhutan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BT.png,True,32
+bv,Bouvet Island,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BV.png,True,33
+bw,Botswana,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BW.png,True,34
+by,Belarus,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BY.png,True,35
+bz,Belize,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/BZ.png,True,36
+ca,Canada,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CA.png,True,37
+cc,Cocos (Keeling) Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CC.png,True,38
+cd,"Congo, Democratic Republic of the",https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CD.png,True,39
+cf,Central African Republic,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CF.png,True,40
+cg,Congo,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CG.png,True,41
+ch,Switzerland,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CH.png,True,42
+ci,Republic of Côte Ivoire,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CI.png,True,43
+ck,Cook Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CK.png,True,44
+cl,Chile,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CL.png,True,45
+cm,Cameroon,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CM.png,True,46
+cn,China,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CN.png,True,47
+co,Colombia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CO.png,True,48
+cr,Costa Rica,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CR.png,True,49
+cu,Cuba,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CU.png,True,50
+cv,Cabo Verde,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CV.png,True,51
+cw,Curaçao,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CW.png,True,52
+cx,Christmas Island,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CX.png,True,53
+cy,Cyprus,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CY.png,True,54
+cz,Czechia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CZ.png,True,55
+de,Germany,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/DE.png,True,56
+dj,Djibouti,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/DJ.png,True,57
+dk,Denmark,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/DK.png,True,58
+dm,Dominica,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/DM.png,True,59
+do,Dominican Republic,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/DO.png,True,60
+dz,Algeria,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/DZ.png,True,61
+ec,Ecuador,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/EC.png,True,62
+ee,Estonia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/EE.png,True,63
+eg,Egypt,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/EG.png,True,64
+eh,Western Sahara,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/EH.png,True,65
+er,Eritrea,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ER.png,True,66
+es,Spain,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ES.png,True,67
+et,Ethiopia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ET.png,True,68
+fi,Finland,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/FI.png,True,69
+fj,Fiji,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/FJ.png,True,70
+fk,Falkland Islands (Malvinas),https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/FK.png,True,71
+fm,Micronesia (Federated States of),https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/FM.png,True,72
+fo,Faroe Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/FO.png,True,73
+fr,France,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/FR.png,True,74
+ga,Gabon,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GA.png,True,75
+gb,United Kingdom,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GB.png,True,76
+gd,Grenada,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GD.png,True,77
+ge,Georgia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GE.png,True,78
+gf,French Guiana,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GF.png,True,79
+gg,Guernsey,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GG.png,True,80
+gh,Ghana,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GH.png,True,81
+gi,Gibraltar,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GI.png,True,82
+gl,Greenland,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GL.png,True,83
+gm,Gambia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GM.png,True,84
+gn,Guinea,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GN.png,True,85
+gp,Guadeloupe,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GP.png,True,86
+gq,Equatorial Guinea,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GQ.png,True,87
+gr,Greece,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GR.png,True,88
+gs,South Georgia and the South Sandwich Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GS.png,True,89
+gt,Guatemala,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GT.png,True,90
+gu,Guam,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GU.png,True,91
+gw,Guinea-Bissau,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GW.png,True,92
+gy,Guyana,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GY.png,True,93
+hk,Hong Kong,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/HK.png,True,94
+hm,Heard Island and McDonald Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/HM.png,True,95
+hn,Honduras,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/HN.png,True,96
+hr,Croatia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/HR.png,True,97
+ht,Haiti,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/HT.png,True,98
+hu,Hungary,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/HU.png,True,99
+id,Indonesia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ID.png,True,100
+ie,Ireland,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IE.png,True,101
+il,Israel,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IL.png,True,102
+im,Isle of Man,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IM.png,True,103
+in,India,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IN.png,True,104
+io,British Indian Ocean Territory,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IO.png,True,105
+iq,Iraq,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IQ.png,True,106
+ir,Islamic Republic of Iran,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IR.png,True,107
+is,Iceland,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IS.png,True,108
+it,Italy,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IT.png,True,109
+je,Jersey,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/JE.png,True,110
+jm,Jamaica,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/JM.png,True,111
+jo,Jordan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/JO.png,True,112
+jp,Japan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/JP.png,True,113
+ke,Kenya,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KE.png,True,114
+kg,Kyrgyzstan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KG.png,True,115
+kh,Cambodia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KH.png,True,116
+ki,Kiribati,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KI.png,True,117
+km,Comoros,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KM.png,True,118
+kn,Saint Kitts and Nevis,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KN.png,True,119
+kp,Democratic Peoples Republic of Korea (DPRK),https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KP.png,True,120
+kr,Republic of Korea (ROK),https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KR.png,True,121
+kw,Kuwait,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KW.png,True,122
+ky,Cayman Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KY.png,True,123
+kz,Kazakhstan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/KZ.png,True,124
+la,Lao Peoples Democratic Republic,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LA.png,True,125
+lb,Lebanon,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LB.png,True,126
+lc,Saint Lucia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LC.png,True,127
+li,Liechtenstein,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LI.png,True,128
+lk,Sri Lanka,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LK.png,True,129
+lr,Liberia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LR.png,True,130
+ls,Lesotho,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LS.png,True,131
+lt,Lithuania,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LT.png,True,132
+lu,Luxembourg,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LU.png,True,133
+lv,Latvia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LV.png,True,134
+ly,Libya,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/LY.png,True,135
+ma,Morocco,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MA.png,True,136
+mc,Monaco,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MC.png,True,137
+md,Republic of Moldova,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MD.png,True,138
+me,Montenegro,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ME.png,True,139
+mf,Saint Martin (French part),https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MF.png,True,140
+mg,Madagascar,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MG.png,True,141
+mh,Marshall Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MH.png,True,142
+mk,North Macedonia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MK.png,True,143
+ml,Mali,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ML.png,True,144
+mm,Myanmar,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MM.png,True,145
+mn,Mongolia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MN.png,True,146
+mo,Macao,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MO.png,True,147
+mp,Northern Mariana Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MP.png,True,148
+mq,Martinique,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MQ.png,True,149
+mr,Mauritania,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MR.png,True,150
+ms,Montserrat,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MS.png,True,151
+mt,Malta,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MT.png,True,152
+mu,Mauritius,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MU.png,True,153
+mv,Maldives,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MV.png,True,154
+mw,Malawi,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MW.png,True,155
+mx,Mexico,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MX.png,True,156
+my,Malaysia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MY.png,True,157
+mz,Mozambique,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/MZ.png,True,158
+na,Namibia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NA.png,True,159
+nc,New Caledonia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NC.png,True,160
+ne,Niger,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NE.png,True,161
+nf,Norfolk Island,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NF.png,True,162
+ng,Nigeria,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NG.png,True,163
+ni,Nicaragua,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NI.png,True,164
+nl,Kingdom of the Netherlands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NL.png,True,165
+no,Norway,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NO.png,True,166
+np,Nepal,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NP.png,True,167
+nr,Nauru,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NR.png,True,168
+nu,Niue,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NU.png,True,169
+nz,New Zealand,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/NZ.png,True,170
+om,Oman,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/OM.png,True,171
+pa,Panama,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PA.png,True,172
+pe,Peru,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PE.png,True,173
+pf,French Polynesia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PF.png,True,174
+pg,Papua New Guinea,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PG.png,True,175
+ph,Philippines,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PH.png,True,176
+pk,Pakistan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PK.png,True,177
+pl,Poland,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PL.png,True,178
+pm,Saint Pierre and Miquelon,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PM.png,True,179
+pn,Pitcairn,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PN.png,True,180
+pr,Puerto Rico,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PR.png,True,181
+ps,Palestine,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PS.png,True,182
+pt,Portugal,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PT.png,True,183
+pw,Palau,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PW.png,True,184
+py,Paraguay,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PY.png,True,185
+qa,Qatar,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/QA.png,True,186
+re,Réunion,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/RE.png,True,187
+ro,Romania,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/RO.png,True,188
+rs,Serbia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/RS.png,True,189
+ru,Russian Federation,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/RU.png,True,190
+rw,Rwanda,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/RW.png,True,191
+sa,Saudi Arabia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SA.png,True,192
+sb,Solomon Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SB.png,True,193
+sc,Seychelles,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SC.png,True,194
+sd,Sudan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SD.png,True,195
+se,Sweden,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SE.png,True,196
+sg,Singapore,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SG.png,True,197
+sh,"Saint Helena, Ascension and Tristan da Cunha",https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SH.png,True,198
+si,Slovenia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SI.png,True,199
+sj,Svalbard and Jan Mayen,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SJ.png,True,200
+sk,Slovakia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SK.png,True,201
+sl,Sierra Leone,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SL.png,True,202
+sm,San Marino,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SM.png,True,203
+sn,Senegal,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SN.png,True,204
+so,Somalia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SO.png,True,205
+sr,Suriname,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SR.png,True,206
+ss,South Sudan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SS.png,True,207
+st,Sao Tome and Principe,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ST.png,True,208
+sv,El Salvador,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SV.png,True,209
+sx,Sint Maarten (Dutch part),https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SX.png,True,210
+sy,Syrian Arab Republic,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SY.png,True,211
+sz,Eswatini,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/SZ.png,True,212
+tc,Turks and Caicos Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TC.png,True,213
+td,Chad,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TD.png,True,214
+tf,French Southern Territories,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TF.png,True,215
+tg,Togo,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TG.png,True,216
+th,Thailand,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TH.png,True,217
+tj,Tajikistan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TJ.png,True,218
+tk,Tokelau,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TK.png,True,219
+tl,Timor-Leste,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TL.png,True,220
+tm,Turkmenistan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TM.png,True,221
+tn,Tunisia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TN.png,True,222
+to,Tonga,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TO.png,True,223
+tr,Türkiye,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TR.png,True,224
+tt,Trinidad and Tobago,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TT.png,True,225
+tv,Tuvalu,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TV.png,True,226
+tw,Taiwan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TW.png,True,227
+tz,Tanzania,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TZ.png,True,228
+ua,Ukraine,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/UA.png,True,229
+ug,Uganda,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/UG.png,True,230
+um,United States Minor Outlying Islands,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/UM.png,True,231
+us,USA,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/US.png,True,232
+uy,Uruguay,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/UY.png,True,233
+uz,Uzbekistan,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/UZ.png,True,234
+va,Holy See,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/VA.png,True,235
+vc,Saint Vincent and the Grenadines,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/VC.png,True,236
+ve,Virgin Islands (U.S.),https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/VE.png,True,237
+vg,Virgin Islands (British),https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/VG.png,True,238
+vn,Viet Nam,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/VN.png,True,239
+vu,Vanuatu,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/VU.png,True,240
+wf,Wallis and Futuna,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/WF.png,True,241
+ws,Samoa,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/WS.png,True,242
+ye,Yemen,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/YE.png,True,243
+yt,Mayotte,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/YT.png,True,244
+za,South Africa,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ZA.png,True,245
+zm,Zambia,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ZM.png,True,246
+zw,Zimbabwe,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ZW.png,True,247

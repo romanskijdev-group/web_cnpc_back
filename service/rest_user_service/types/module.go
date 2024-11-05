@@ -3,6 +3,7 @@ package types
 import (
 	restauthcore "cnpc_backend/core/module/rest_auth"
 	usersdb "cnpc_backend/core/module/user/users/db"
+	protoobj "cnpc_backend/core/proto"
 	awss3api "cnpc_backend/core/services/external_services/aws_s3_api"
 	redismodule "cnpc_backend/core/services/internal_services/redis"
 	"cnpc_backend/core/typescore"
@@ -10,6 +11,8 @@ import (
 )
 
 type Clients struct {
+	UserAccountServiceProto  protoobj.UserServiceClient
+	NotificationServiceProto protoobj.NotificationServiceProtoClient
 }
 
 type Modules struct {

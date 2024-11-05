@@ -1,0 +1,13 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "google/protobuf/wrappers.proto";
+import "messages/RegionInfoDetected.proto";
+
+message DetectorIPStruct {
+    google.protobuf.StringValue IP = 1;
+	google.protobuf.BoolValue IsINBlackList =2;
+	
+    RegionInfoDetected RegionInfo = 3;
+}

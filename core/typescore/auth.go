@@ -1,5 +1,7 @@
 package typescore
 
+import "net/http"
+
 type ControlAuthRestParams struct {
 	UserAuthorizationChecked bool
 	EnabledRoles             []*string
@@ -11,18 +13,36 @@ type InitLoginRequest struct {
 	Referral *int64  `json:"referral"`
 }
 
+type GenerateUserSecretI struct {
+	UserIdent string `json:"user_ident"`
+	Secret    string `json:"secret"`
+	ExpiresIn *int64 `json:"expires_in"`
+}
+
+type AuthMailGetPassReq struct {
+	Email *string `json:"email"`
+}
+
+type OAuthMailConfPassReq struct {
+	Email             *string `json:"email"`
+	TemporaryPassword *string `json:"password,omitempty"`
+}
+
 // AuthReqS
 type UserAuthReqAccountReq struct {
-	TelegramID *int64  `json:"telegram_id"`
-	Username   *string `json:"username"`
-	IsPremium  *bool   `json:"is_premium"`
-	SystemID   *string `json:"system_id,omitempty"`
-	FirstName  *string `json:"first_name"`
-	PhotoURL   *string `json:"photo_url"`
-	Language   *string `json:"language"`
+	Email             *string `json:"email"`
+	TemporaryPassword *string `json:"temp_password,omitempty"`
+	Password          *string `json:"password,omitempty"`
+	TelegramID        *int64  `json:"telegram_id"`
+	VKID              *int64  `json:"vk_id"`
+	EmailCode         *string `json:"email_code,omitempty"`
+	SystemID          *string `json:"system_id,omitempty"`
 
-	ReferralID *int64    `json:"referral_id"`
-	AuthType   *TypeAuth `json:"auth_type,omitempty"`
+	Code   *string `json:"code"`
+	Secret *string `json:"secret"`
+
+	AuthType         *TypeAuth         `json:"auth_type,omitempty"`
+	DetectorIPStruct *DetectorIPStruct `json:"detector_ip_struct,omitempty"`
 }
 
 // AuthReqS
@@ -52,9 +72,11 @@ type LogInInfoRes struct {
 type TypeAuth string
 
 const (
-	TelegramType    TypeAuth = "telegram"      // вход через телеграм
-	AuthTokenType   TypeAuth = "token_auth"    // вход через токен
-	LoginByPassType TypeAuth = "password_auth" // вход через пароль
+	TelegramType  TypeAuth = "telegram"   // вход через телеграм
+	VKType        TypeAuth = "vk"         // вход через vk
+	EmailType     TypeAuth = "email"      // вход через почту
+	PasswordType  TypeAuth = "password"   // вход через пароль
+	AuthTokenType TypeAuth = "token_auth" // вход через токен
 )
 
 type AdminParamsLogin struct {
@@ -64,4 +86,13 @@ type AdminParamsLogin struct {
 type AdminLogInInfoRes struct {
 	TokenAuth *TokenInfo        `json:"token"`
 	Params    *AdminParamsLogin `json:"params"`
+}
+
+type RouteH struct {
+	Method                   string                                                                                                                                          // метод запроса
+	Url                      string                                                                                                                                          // uri
+	UserRole                 *UserRoleTypes                                                                                                                                  // роль пользователя
+	HandlerFunc              func(w http.ResponseWriter, r *http.Request, userObj *UsersProviderControl, detectorIPStruct *DetectorIPStruct) (interface{}, *uint64, *WEvent) // функция обработчик
+	UserAuthorizationChecked *bool                                                                                                                                           // проверка авторизации пользователя
+	RoleCheck                *bool
 }

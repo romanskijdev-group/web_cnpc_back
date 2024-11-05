@@ -2,13 +2,22 @@ syntax = "proto3";
 package msg;
 option go_package = "./proto;protoobj";
 
+import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 message ShortUserInfo {
     google.protobuf.UInt64Value serial_id = 1;            // Уникальный порядковый идентификатор записи
-    google.protobuf.Int64Value telegram_id = 2;           // Идентификатор пользователя в Telegram
-    google.protobuf.StringValue nickname = 3;             // Псевдоним или никнейм пользователя
-    google.protobuf.StringValue first_name = 4;           // Имя пользователя
-    google.protobuf.StringValue last_name = 5;            // Фамилия пользователя
-    google.protobuf.StringValue CreatedAt = 6;            // Дата создания пользователя
+    google.protobuf.StringValue email = 2;                // Адрес электронной почты пользователя
+    google.protobuf.Int64Value telegram_id = 3;           // Идентификатор пользователя в Telegram
+    google.protobuf.Int64Value vk_id = 15;           // Идентификатор пользователя в Telegram
+    google.protobuf.StringValue nickname = 4;             // Псевдоним или никнейм пользователя
+    google.protobuf.StringValue first_name = 5;           // Имя пользователя
+    google.protobuf.StringValue last_name = 6;            // Фамилия пользователя
+    google.protobuf.StringValue parent_name = 7;          // Отчество пользователя
+    google.protobuf.StringValue avatar_url = 8;           // URL аватара пользователя
+   
+    google.protobuf.StringValue CreatedAt = 12; // Дата создания пользователя
+
+    google.protobuf.BoolValue isOnline = 13;           // Онлайн ли пользователь
+    google.protobuf.Timestamp lastOnline = 14;         // Дата и время последнего онлайна
 }

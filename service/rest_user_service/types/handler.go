@@ -7,8 +7,8 @@ import (
 
 // Измененная структура для представления маршрута с добавлением новых параметров
 type RouteParams struct {
-	Method                   string                                                                                                                          // метод запроса
-	Url                      string                                                                                                                          // uri
-	HandlerFunc              func(w http.ResponseWriter, r *http.Request, userObj *typescore.UsersProviderControl) (interface{}, *uint64, *typescore.WEvent) // функция обработчик
-	UserAuthorizationChecked *bool                                                                                                                           // проверка авторизации пользователя
+	Method                   string                                                                                                                                                                        // метод запроса
+	Url                      string                                                                                                                                                                        // uri
+	HandlerFunc              func(w http.ResponseWriter, r *http.Request, userObj *typescore.UsersProviderControl, detectorIPStruct *typescore.DetectorIPStruct) (interface{}, *uint64, *typescore.WEvent) // функция обработчик
+	UserAuthorizationChecked *bool                                                                                                                                                                         // проверка авторизации пользователя
 }

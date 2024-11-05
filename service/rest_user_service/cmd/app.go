@@ -9,6 +9,8 @@ import (
 	"cnpc_backend/core/services/internal_services/pgxpool"
 	redismodule "cnpc_backend/core/services/internal_services/redis"
 	"cnpc_backend/core/typescore"
+	grpcclients "cnpc_backend/rest_user_service/grpc_clients"
+	authuser "cnpc_backend/rest_user_service/handler/auth"
 	"cnpc_backend/rest_user_service/types"
 	"errors"
 	"fmt"
@@ -31,8 +33,11 @@ func main() {
 
 	// ** Инициализация модулей
 	ipc := initInternalProvider(cfg)
-	//protoOpt := grpcclients.CreateDialOptionsProto()
-	ipc.Clients = types.Clients{}
+	protoOpt := grpcclients.CreateDialOptionsProto()
+	ipc.Clients = types.Clients{
+		UserAccountServiceProto:  grpcclients.InitClientUserAccountServiceProto(protoOpt, cfg),
+		NotificationServiceProto: grpcclients.InitClientNotificationServiceProto(protoOpt, cfg),
+	}
 	ipc = initModules(cfg, ipc)
 	startRest(ipc)
 }
@@ -87,7 +92,9 @@ func initInternalProvider(config *typescore.Config) *types.InternalProviderContr
 
 // Регистрация обработчиков
 func registerRouters(ipc *types.InternalProviderControl, router *chi.Mux) {
-
+	// Регистрация обработчика авторизации
+	authUser := authuser.NewAuthUser(ipc)
+	authUser.RegisterAuthByToken(router)
 }
 
 // запуск сервера REST API

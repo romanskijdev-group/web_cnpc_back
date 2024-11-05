@@ -1,31 +1,12 @@
-package marshalleruser
+package marshallerusers
 
 import (
-	marshallerutils "zod_backend_dev/core/grpc_core/marshaller_utils"
-	"zod_backend_dev/core/models"
-	marshallersystem "zod_backend_dev/core/module/system/marshaller"
-	protoobj "zod_backend_dev/core/proto"
+	marshallerutils "cnpc_backend/core/grpc_core/marshaller_utils"
+	protoobj "cnpc_backend/core/proto"
+	"cnpc_backend/core/typescore"
 )
 
-func UserAuthReqAccountReqSerialization(obj *models.UserAuthReqAccountReq) *protoobj.UserAuthReqAccountReq {
-	if obj == nil {
-		return nil
-	}
-	s := marshallerutils.InitSerializationUtils()
-
-	return &protoobj.UserAuthReqAccountReq{
-		TelegramID: s.Int64ToWrapperInt64Value(obj.TelegramID),
-		Username:   s.StringToWrapperStringValue(obj.Username),
-		FirstName:  s.StringToWrapperStringValue(obj.FirstName),
-		IsPremium:  s.BoolToWrapperBoolValue(obj.IsPremium),
-		SystemID:   s.StringToWrapperStringValue(obj.SystemID),
-		Language:   s.StringToWrapperStringValue(obj.Language),
-		ReferralID: s.Int64ToWrapperInt64Value(obj.ReferralID),
-		AuthType:   mapTypeAuthSerialization(obj.AuthType),
-	}
-}
-
-func LogInInfoResSerialization(obj *models.LogInInfoRes) *protoobj.LogInInfoRes {
+func LogInInfoResSerialization(obj *typescore.LogInInfoRes) *protoobj.LogInInfoRes {
 	if obj == nil {
 		return nil
 	}
@@ -38,71 +19,7 @@ func LogInInfoResSerialization(obj *models.LogInInfoRes) *protoobj.LogInInfoRes 
 	}
 }
 
-func UserMsgReqSerialization(user *models.User,
-	offset *uint64, limit *uint64, likesFiled map[string]string) *protoobj.UsersMsgReq {
-	if user == nil {
-		return nil
-	}
-	s := marshallerutils.InitSerializationUtils()
-	userObj := UsersSerialization(user)
-
-	return &protoobj.UsersMsgReq{
-		ParamsFiltering: userObj,
-		Offset:          s.Uint64ToWrapperUInt64Value(offset),
-		Limit:           s.Uint64ToWrapperUInt64Value(limit),
-		LikeFields:      likesFiled,
-	}
-}
-
-func UsersSerialization(obj *models.User) *protoobj.UsersMsg {
-	if obj == nil {
-		return nil
-	}
-	s := marshallerutils.InitSerializationUtils()
-
-	return &protoobj.UsersMsg{
-		SystemId:            s.StringToWrapperStringValue(obj.SystemID),
-		SerialId:            s.Uint64ToWrapperUInt64Value(obj.SerialID),
-		Role:                mapRoleSerialization(obj.Role),
-		TelegramId:          s.Int64ToWrapperInt64Value(obj.TelegramID),
-		Username:            s.StringToWrapperStringValue(obj.Username),
-		FirstName:           s.StringToWrapperStringValue(obj.FirstName),
-		LastName:            s.StringToWrapperStringValue(obj.LastName),
-		Gender:              s.StringToWrapperStringValue(obj.Gender),
-		Zodiac:              marshallersystem.MapZodiacSignsSerialization(obj.Zodiac),
-		IsBlocked:           s.BoolToWrapperBoolValue(obj.IsBlocked),
-		IsPremium:           s.BoolToWrapperBoolValue(obj.IsBlocked),
-		BirthDate:           s.TimePtrToTimestampPB(obj.BirthDate),
-		BirthTime:           s.TimePtrToTimestampPB(obj.BirthTime),
-		BirthPlace:          s.StringToWrapperStringValue(obj.BirthPlace),
-		NotificationEnabled: s.BoolToWrapperBoolValue(obj.NotificationsEnabled),
-		Language:            s.StringToWrapperStringValue(obj.Language),
-		ReferralId:          s.StringToWrapperStringValue(obj.ReferralID),
-		ReferralCount:       s.DecimalToWrapperStringValue(obj.ReferralCount),
-		Balance:             s.DecimalToWrapperStringValue(obj.Balance),
-		CreatedAt:           s.TimePtrToTimestampPB(obj.CreatedAt),
-		LastLogin:           s.TimePtrToTimestampPB(obj.LastLogin),
-		AvatarUrl:           s.StringToWrapperStringValue(obj.AvatarURL),
-	}
-}
-
-func UsersListSerialization(obj []*models.User) *protoobj.UsersMsgList {
-	if obj == nil {
-		return nil
-	}
-	var res []*protoobj.UsersMsg
-	for _, item := range obj {
-		protoItem := UsersSerialization(item)
-		if protoItem != nil {
-			res = append(res, protoItem)
-		}
-	}
-	return &protoobj.UsersMsgList{
-		UsersMsg: res,
-	}
-}
-
-func TokenInfoSerialization(obj *models.TokenInfo) *protoobj.TokenInfo {
+func TokenInfoSerialization(obj *typescore.TokenInfo) *protoobj.TokenInfo {
 	if obj == nil {
 		return nil
 	}
@@ -112,7 +29,7 @@ func TokenInfoSerialization(obj *models.TokenInfo) *protoobj.TokenInfo {
 	}
 }
 
-func UserParamsLoginSerialization(obj *models.UserParamsLogin) *protoobj.UserParamsLogin {
+func UserParamsLoginSerialization(obj *typescore.UserParamsLogin) *protoobj.UserParamsLogin {
 	if obj == nil {
 		return nil
 	}
@@ -124,46 +41,163 @@ func UserParamsLoginSerialization(obj *models.UserParamsLogin) *protoobj.UserPar
 	}
 }
 
-func mapRoleSerialization(roleType *models.UserRoleTypes) protoobj.UserRole {
-	if roleType == nil {
-		return protoobj.UserRole_USER
+func RegionInfoDetectedSerialization(obj *typescore.RegionInfoDetected) *protoobj.RegionInfoDetected {
+	if obj == nil {
+		return nil
 	}
-	switch *roleType {
-	case models.UserRole:
-		return protoobj.UserRole_USER
-	case models.AdminRole:
-		return protoobj.UserRole_ADMIN
-	case models.AstrologerRole:
-		return protoobj.UserRole_ASTROLOGER
-	default:
-		return protoobj.UserRole_USER
+	s := marshallerutils.InitSerializationUtils()
+	return &protoobj.RegionInfoDetected{
+		City:        s.StringToWrapperStringValue(obj.City),
+		Region:      s.StringToWrapperStringValue(obj.Region),
+		CountryCode: s.StringToWrapperStringValue(obj.CountryCode),
+		CountryName: s.StringToWrapperStringValue(obj.CountryName),
 	}
 }
 
-func mapTypeAuthSerialization(authType *models.TypeAuth) protoobj.TypeAuth {
-	if authType == nil {
-		return protoobj.TypeAuth_TypeAuth_NULL
+func DetectorIPStructSerialization(obj *typescore.DetectorIPStruct) *protoobj.DetectorIPStruct {
+	if obj == nil {
+		return nil
 	}
-	switch *authType {
-	case models.TelegramType:
-		return protoobj.TypeAuth_TypeAuth_telegram
-	case models.AuthTokenType:
-		return protoobj.TypeAuth_TypeAuth_token_auth
-	default:
-		return protoobj.TypeAuth_TypeAuth_NULL
+	s := marshallerutils.InitSerializationUtils()
+	regionInfo := RegionInfoDetectedSerialization(obj.RegionInfo)
+
+	return &protoobj.DetectorIPStruct{
+		IP:            s.StringToWrapperStringValue(obj.IP),
+		IsINBlackList: s.BoolToWrapperBoolValue(obj.IsINBlackList),
+		RegionInfo:    regionInfo,
 	}
 }
 
-func ShortUserInfoSerialization(obj *models.ShortUserInfo) *protoobj.ShortUserInfo {
+func UserAuthReqAccountReqSerialization(obj *typescore.UserAuthReqAccountReq) *protoobj.UserAuthReqAccountReq {
+	if obj == nil {
+		return nil
+	}
+	s := marshallerutils.InitSerializationUtils()
+
+	return &protoobj.UserAuthReqAccountReq{
+		Email:             s.StringToWrapperStringValue(obj.Email),
+		TemporaryPassword: s.StringToWrapperStringValue(obj.TemporaryPassword),
+		TelegramID:        s.Int64ToWrapperInt64Value(obj.TelegramID),
+		EmailCode:         s.StringToWrapperStringValue(obj.EmailCode),
+		SystemID:          s.StringToWrapperStringValue(obj.SystemID),
+
+		Code:             s.StringToWrapperStringValue(obj.Code),
+		Secret:           s.StringToWrapperStringValue(obj.Secret),
+		DetectorIPStruct: DetectorIPStructSerialization(obj.DetectorIPStruct),
+		AuthType:         mapTypeAuthSerialization(obj.AuthType),
+	}
+}
+
+func UsersProviderControlMsgListSerialization(obj []*typescore.UsersProviderControl) *protoobj.UsersMsgList {
+	if obj == nil {
+		return nil
+	}
+	var res []*protoobj.UsersMsg
+	for _, item := range obj {
+		protoItem := UsersProviderControlSerialization(item)
+		if protoItem != nil {
+			res = append(res, protoItem)
+		}
+	}
+	return &protoobj.UsersMsgList{
+		UsersMsg: res,
+	}
+}
+
+func UpdateUserAvatarURLReqSerialization(userSystemID *string, avatarURL *string) *protoobj.UpdateUserAvatarURLReq {
+	if userSystemID == nil {
+		return nil
+	}
+	s := marshallerutils.InitSerializationUtils()
+	return &protoobj.UpdateUserAvatarURLReq{
+		UserSystemID: s.StringToWrapperStringValue(userSystemID),
+		AvatarURL:    s.StringToWrapperStringValue(avatarURL),
+	}
+}
+
+func UsersProviderControlSerialization(obj *typescore.UsersProviderControl) *protoobj.UsersMsg {
+	if obj == nil {
+		return nil
+	}
+	s := marshallerutils.InitSerializationUtils()
+
+	return &protoobj.UsersMsg{
+		SystemId:            s.StringToWrapperStringValue(obj.SystemID),
+		SerialId:            s.Uint64ToWrapperUInt64Value(obj.SerialID),
+		Role:                mapRoleSerialization(obj.Role),
+		Email:               s.StringToWrapperStringValue(obj.Email),
+		TelegramId:          s.Int64ToWrapperInt64Value(obj.TelegramID),
+		Nickname:            s.StringToWrapperStringValue(obj.Nickname),
+		FirstName:           s.StringToWrapperStringValue(obj.FirstName),
+		LastName:            s.StringToWrapperStringValue(obj.LastName),
+		BirthDate:           s.TimePtrToTimestampPB(obj.BirthDate),
+		PhoneNumber:         s.Uint64ToWrapperUInt64Value(obj.PhoneNumber),
+		AvatarUrl:           s.StringToWrapperStringValue(obj.AvatarURL),
+		Language:            s.StringToWrapperStringValue(obj.Language),
+		NotificationEnabled: s.BoolToWrapperBoolValue(obj.NotificationEnabled),
+		IsBlocked:           s.BoolToWrapperBoolValue(obj.IsBlocked),
+
+		ReferralId:   s.StringToWrapperStringValue(obj.ReferralID),
+		ReferralCode: s.StringToWrapperStringValue(obj.ReferralCode),
+		LastIp:       s.StringToWrapperStringValue(obj.LastIP),
+		CreatedAt:    s.TimePtrToTimestampPB(obj.CreatedAt),
+		LastLogin:    s.TimePtrToTimestampPB(obj.LastLogin),
+
+		IsOnline:   s.BoolToWrapperBoolValue(obj.IsOnline),
+		LastOnline: s.TimePtrToTimestampPB(obj.LastOnline),
+	}
+}
+
+func ShortUserInfoSerialization(obj *typescore.ShortUserInfo) *protoobj.ShortUserInfo {
 	if obj == nil {
 		return nil
 	}
 	s := marshallerutils.InitSerializationUtils()
 	return &protoobj.ShortUserInfo{
 		SerialId:   s.Uint64ToWrapperUInt64Value(obj.SerialID),
+		Email:      s.StringToWrapperStringValue(obj.Email),
 		TelegramId: s.Int64ToWrapperInt64Value(obj.TelegramID),
-		Nickname:   s.StringToWrapperStringValue(obj.Username),
+		Nickname:   s.StringToWrapperStringValue(obj.Nickname),
 		FirstName:  s.StringToWrapperStringValue(obj.FirstName),
 		LastName:   s.StringToWrapperStringValue(obj.LastName),
+		ParentName: s.StringToWrapperStringValue(obj.ParentName),
+		AvatarUrl:  s.StringToWrapperStringValue(obj.AvatarURL),
+		CreatedAt:  s.StringTimeToWrapperOnlyDate(obj.CreatedAt),
+		IsOnline:   s.BoolToWrapperBoolValue(obj.IsOnline),
+		LastOnline: s.TimePtrToTimestampPB(obj.LastOnline),
+	}
+}
+
+func mapRoleSerialization(roleType *typescore.UserRoleTypes) protoobj.UserRole {
+	if roleType == nil {
+		return protoobj.UserRole_USER
+	}
+	switch *roleType {
+	case typescore.UserRole:
+		return protoobj.UserRole_USER
+	case typescore.AdminRole:
+		return protoobj.UserRole_ADMIN
+	case typescore.SuperAdminRole:
+		return protoobj.UserRole_SUPER_ADMIN
+	case typescore.SupportRole:
+		return protoobj.UserRole_SUPPORT
+	default:
+		return protoobj.UserRole_USER
+	}
+}
+
+func mapTypeAuthSerialization(authType *typescore.TypeAuth) protoobj.TypeAuth {
+	if authType == nil {
+		return protoobj.TypeAuth_TypeAuth_NULL
+	}
+	switch *authType {
+	case typescore.EmailType:
+		return protoobj.TypeAuth_TypeAuth_email_auth
+	case typescore.TelegramType:
+		return protoobj.TypeAuth_TypeAuth_telegram
+	case typescore.AuthTokenType:
+		return protoobj.TypeAuth_TypeAuth_token_auth
+	default:
+		return protoobj.TypeAuth_TypeAuth_NULL
 	}
 }

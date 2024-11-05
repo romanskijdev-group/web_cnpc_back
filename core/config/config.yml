@@ -26,10 +26,32 @@ secure_params:
   salt: "test"
   session_token_hours_life: 8
   admin_session_token_hours_life: 72
+  temporary_password_life_minute: 5
+vk_api:
+  client_id: "bZUSYsKKHKnXBaKk9OwX"
+  client_secret: "54ab0e8854ab0e8854ab0e887d5789e996554ab54ab0e883382ed168307b3c38b675d7c"
+  redirect_uri: ""
+firebase:
+  credentials_server_token: ""
+ali_cloud_oss_storage:
+  key: ""
+  secret: ""
+  bucket: ""
+  endpoint: ""
+smtp_mail_server:
+  base_mail: "questholder@yandex.ru"
+  base_title: "Quest Holder"
+  smtp_password: "xurdwrobvybmquxl"
+  smtp_host: "smtp.yandex.ru"
+  smtp_port: "587" # 465 for SSL or 587 for localhost
 server:
   rest_admin_service: # Admin service address
     bind: '0.0.0.0'
     port: 10001
+  notifications_service:
+    bind: '0.0.0.0'
+    internal: '0.0.0.0'
+    port: 10002
   rest_user_service: # User API service address
     bind: '0.0.0.0'
     port: 10005

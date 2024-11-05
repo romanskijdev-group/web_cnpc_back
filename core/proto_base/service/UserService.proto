@@ -1,0 +1,36 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "messages/UsersMsg.proto";
+import "messages/UsersMsgList.proto";
+import "messages/UpdateUserAvatarURLReq.proto";
+import "messages/Empty.proto";
+import "messages/LogInInfoRes.proto";
+import "messages/UserAuthReqAccountReq.proto";
+
+service UserService {
+  // вход пользователя в аккаунт
+  rpc UserLoginAccount(UserAuthReqAccountReq) returns (LogInInfoRes) {}
+
+  // получение профиля пользователя
+  rpc GetUserProfile(UsersMsg) returns (UsersMsg) {}  //
+
+  // получение профилей пользователей
+  rpc GetUsersInfoList(UsersMsg) returns (UsersMsgList) {}
+
+  // обновление информаций о пользователе
+  rpc UpdateUserProfile(UsersMsg) returns (UsersMsg) {}
+
+  // создание пользователя
+  rpc CreateNewUser(UsersMsg) returns (UsersMsg) {}
+
+  // удаление пользователя
+  rpc DeleteUser(UsersMsg) returns (Empty) {}
+
+  // проверка временного кода входа телеграм бота пользователя (если упех то очистка кода из памяти)
+  rpc CheckCodeBotAuthUserValid(UserAuthReqAccountReq) returns (LogInInfoRes) {}
+
+  // обновление аватара пользователя
+  rpc UpdateUserAvatarURL(UpdateUserAvatarURLReq) returns (Empty) {}
+}

@@ -1,0 +1,5 @@
+code,name,priority_index,is_active
+user_agreement,Пользовательское соглашение,1,true
+privacy_policy,Политика конфиденциальности,2,true
+disclaimer_agreement,Отказ от ответственности,3,true
+cookie_rules,Правила использования cookies,4,true

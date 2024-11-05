@@ -4,6 +4,9 @@ option go_package = "./proto;protoobj";
 
 enum TypeAuth {
     TypeAuth_NULL = 0; 
-    TypeAuth_telegram = 1; 
+    TypeAuth_telegram = 1;
     TypeAuth_token_auth = 2;
+    TypeAuth_email_auth = 3;
+    TypeAuth_vk = 4;
+    TypeAuth_password = 5;
 }

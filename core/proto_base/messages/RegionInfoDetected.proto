@@ -1,0 +1,12 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "google/protobuf/wrappers.proto";
+
+message RegionInfoDetected {
+    google.protobuf.StringValue City   = 1;
+    google.protobuf.StringValue Region = 2;
+    google.protobuf.StringValue CountryCode = 3;
+    google.protobuf.StringValue CountryName  =4;
+}

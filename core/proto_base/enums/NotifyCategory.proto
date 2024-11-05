@@ -1,0 +1,14 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+// Типы исполнений предложений p2p
+enum NotifyCategory {
+    NotifyCategory_NULL = 0;
+
+    NotifyCategory_bearer_cheque = 1; //  чек
+    NotifyCategory_chats = 2;  // Чаты
+    NotifyCategory_info = 3; // Информационное уведомление(от админа)
+    NotifyCategory_temporary_password = 4; // Временный пароль
+    NotifyCategory_device_new = 5;  // Новое устройство
+}
