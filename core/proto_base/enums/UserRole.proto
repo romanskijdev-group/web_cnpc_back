@@ -1,0 +1,11 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+// UserRole - роли пользователей
+enum UserRole {
+    USER = 0;        // пользователь
+    ADMIN = 1;       // администратор
+    SUPER_ADMIN = 2; // супер администратор
+    SUPPORT = 3;     // поддержка
+}

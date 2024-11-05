@@ -1,0 +1,20 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "google/protobuf/wrappers.proto";
+import "enums/NotifyCategory.proto";
+import "messages/NotifyAdditionsObject.proto";
+
+message NotifyParams {
+  google.protobuf.StringValue Text = 1;
+  google.protobuf.StringValue title = 2;
+  repeated google.protobuf.StringValue SystemUserIDs = 3;
+  google.protobuf.StringValue MailAddress = 4;
+  NotifyCategory Category = 5;
+
+  bool IsEmail = 6;
+  bool Emergency = 7;
+  
+  NotifyAdditionsObject additionsObject = 8;
+}

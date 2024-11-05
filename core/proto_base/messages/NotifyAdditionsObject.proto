@@ -1,0 +1,11 @@
+
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "google/protobuf/wrappers.proto";
+
+message NotifyAdditionsObject {
+//    BearerCheque bearerChequeObj = 1;
+    google.protobuf.StringValue submittedBy = 2;
+}

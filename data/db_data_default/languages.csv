@@ -1,0 +1,11 @@
+code_639_1,code_639_2_T,code_639_2_B,code_639_3,images,base_name,orig_name,is_active,priority_index
+de,deu,ger,deu,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/DE.png,German,Deutsch,False,2
+en,eng,eng,eng,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/GB.png,English,English,True,0
+es,spa,spa,spa,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/ES.png,Spanish,Español,False,3
+fr,fra,fre,fra,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/FR.png,French,Français,False,4
+it,ita,ita,ita,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/IT.png,Italian,Italiano,False,5
+pt,por,por,por,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/PT.png,Portuguese,Português,False,6
+ru,rus,rus,rus,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/RU.png,Russian,Русский,True,1
+tr,tur,tur,tur,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/TR.png,Turkish,Türkçe,False,7
+uk,ukr,ukr,ukr,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/UA.png,Ukrainian,Українська,False,8
+zh,zho,chi,zho,https://zion-bank-storage.oss-us-east-1.aliyuncs.com/flag/CN.png,Chinese,中文,False,9

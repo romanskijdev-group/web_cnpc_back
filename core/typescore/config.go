@@ -3,26 +3,41 @@ package typescore
 import awss3api "cnpc_backend/core/services/external_services/aws_s3_api"
 
 type Config struct {
-	Deploy       string                   `yaml:"deploy" env-default:"local"`
-	Secure       SecureParams             `yaml:"secure_params"`
-	ExchangeRate ExchangeRate             `yaml:"exchangerate"`
-	TDLib        TDLib                    `yaml:"td_lib"`
-	GPT          GPT                      `yaml:"gpt"`
-	Tinkoff      Tinkoff                  `yaml:"tinkoff"`
-	Storage      Storage                  `yaml:"storage"`
-	Redis        Redis                    `yaml:"redis"`
-	Server       Server                   `yaml:"server"`
-	Telegram     Telegram                 `yaml:"telegram"`
+	Secure       SecureParams `yaml:"secure_params"`
+	VKApi        VK           `yaml:"vk_api"`
+	ExchangeRate ExchangeRate `yaml:"exchangerate"`
+	Tinkoff      Tinkoff      `yaml:"tinkoff"`
+	Storage      Storage      `yaml:"storage"`
+	Redis        Redis        `yaml:"redis"`
+	Server       Server       `yaml:"server"`
+	Telegram     Telegram     `yaml:"telegram"`
+	Firebase     struct {
+		CredentialsServerToken string `yaml:"credentials_server_token" env-required:"true"`
+	} `yaml:"firebase" env-required:"true"`
+	AliCloudOSSStorage struct {
+		Key      string `yaml:"key" env-required:"true"`
+		Secret   string `yaml:"secret" env-required:"true"`
+		Endpoint string `yaml:"endpoint" env-required:"true"`
+		Bucket   string `yaml:"bucket" env-required:"true"`
+	} `yaml:"ali_cloud_oss_storage" env-required:"true"`
+	SMTPMailServer struct {
+		BaseMail     string `yaml:"base_mail" env-required:"true"`
+		BaseTitle    string `yaml:"base_title" env-required:"true"`
+		SMTPPassword string `yaml:"smtp_password" env-required:"true"`
+		SMTPHost     string `yaml:"smtp_host" env-required:"true"`
+		SMTPPort     string `yaml:"smtp_port" env-required:"true"`
+	} `yaml:"smtp_mail_server" env-required:"true"`
 	CloudStorage awss3api.StorageConfigSt `yaml:"cloud_storage"`
 }
 
 type Server struct {
-	ChatsService     Service `yaml:"chats_service"`
-	GptService       Service `yaml:"gpt_service"`
-	PaymentService   Service `yaml:"payment_service"`
-	UserService      Service `yaml:"user_service"`
-	RESTUserService  Service `yaml:"rest_user_service"`
-	RESTAdminService Service `yaml:"rest_admin_service"`
+	ChatsService         Service `yaml:"chats_service"`
+	GptService           Service `yaml:"gpt_service"`
+	PaymentService       Service `yaml:"payment_service"`
+	NotificationsService Service `yaml:"notifications_service"`
+	UserService          Service `yaml:"user_service"`
+	RESTUserService      Service `yaml:"rest_user_service"`
+	RESTAdminService     Service `yaml:"rest_admin_service"`
 }
 
 type Service struct {
@@ -55,16 +70,10 @@ type Telegram struct {
 	WebHookUrl string `yaml:"web_hook_url"`
 }
 
-type TDLib struct {
-	ApiID   int32  `yaml:"api_id"`
-	ApiHash string `yaml:"api_hash"`
-}
-
-type GPT struct {
-	GptAPIKey   string `yaml:"gpt_api_key"`
-	GptAPIURL   string `yaml:"gpt_api_url"`
-	GptAssistID string `yaml:"gpt_assist_id"`
-	GptModel    string `yaml:"gpt_model"`
+type VK struct {
+	ClientID     string `yaml:"client_id"`
+	ClientSecret string `yaml:"client_secret"`
+	RedirectURI  string `yaml:"redirect_uri"`
 }
 
 type ExchangeRate struct {
@@ -83,8 +92,9 @@ type Tinkoff struct {
 }
 
 type SecureParams struct {
-	JWTSecret                  string `yaml:"jwt_secret"  env-required:"true"`
-	Salt                       string `yaml:"salt"  env-required:"true"`
-	SessionTokenHoursLife      int    `yaml:"session_token_hours_life"  env-required:"true"`
-	AdminSessionTokenHoursLife int    `yaml:"admin_session_token_hours_life"  env-required:"true"`
+	JWTSecret                   string `yaml:"jwt_secret"  env-required:"true"`
+	Salt                        string `yaml:"salt"  env-required:"true"`
+	SessionTokenHoursLife       int    `yaml:"session_token_hours_life"  env-required:"true"`
+	AdminSessionTokenHoursLife  int    `yaml:"admin_session_token_hours_life"  env-required:"true"`
+	TemporaryPasswordLifeMinute int    `yaml:"temporary_password_life_minute"  env-required:"true"`
 }

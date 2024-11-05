@@ -1,0 +1,9 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "messages/UsersMsg.proto";
+
+message UsersMsgList {
+    repeated UsersMsg usersMsg = 1;
+}

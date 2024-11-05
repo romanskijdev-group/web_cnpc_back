@@ -1,0 +1,11 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "messages/Empty.proto";
+import "messages/NotifyParams.proto";
+
+service NotificationServiceProto {
+  // Уведомление пользователя
+  rpc NotifyUser(NotifyParams) returns (Empty) {}
+}

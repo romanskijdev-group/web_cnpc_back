@@ -1,0 +1,10 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "google/protobuf/wrappers.proto";
+
+message UpdateUserAvatarURLReq {
+    google.protobuf.StringValue userSystemID = 1;
+    google.protobuf.StringValue avatarURL = 2;
+}

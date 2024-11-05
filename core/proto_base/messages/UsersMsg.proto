@@ -1,0 +1,42 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+import "enums/UserRole.proto";
+
+message UsersMsg {
+    google.protobuf.StringValue system_id = 1;                         // Системный идентификатор записи
+    google.protobuf.UInt64Value serial_id = 2;                        // Уникальный порядковый идентификатор записи
+    UserRole role = 3;                                                // Роль пользователя
+    google.protobuf.Int64Value telegram_id = 4;                       // Идентификатор пользователя в Telegram
+    google.protobuf.Int64Value vk_id = 5;                       // Идентификатор пользователя в Telegram
+    google.protobuf.StringValue email = 6;                         // Системный идентификатор записи
+    google.protobuf.StringValue nickname = 7;                         // Псевдоним или никнейм пользователя
+    google.protobuf.StringValue first_name = 8;                       // Имя пользователя
+    google.protobuf.StringValue last_name = 9;                        // Фамилия пользователя
+    google.protobuf.StringValue bio = 10;                        // Фамилия пользователя
+    google.protobuf.StringValue gender = 11;                        // Пол
+    google.protobuf.Timestamp birth_date = 12;                       // Дата рождения пользователя
+    google.protobuf.UInt64Value phone_number = 13;                        // Пол
+    google.protobuf.StringValue avatar_url = 14;                        // Пол
+    google.protobuf.StringValue language = 15;                        // Язык настроек пользователя
+    google.protobuf.BoolValue notification_enabled = 16;               // Включены ли уведомлений
+    google.protobuf.BoolValue is_blocked = 17;                        // Залочен ли пользователь(заблокирован или нет)
+    google.protobuf.StringValue referral_id = 18;                     // Идентификатор реферала пригласившего пользователя
+    google.protobuf.StringValue referral_code = 19;                     // Идентификатор реферала пригласившего пользователя
+    google.protobuf.StringValue last_ip = 20;                     // Идентификатор реферала пригласившего пользователя
+    google.protobuf.Timestamp created_at = 21;                        // Дата и время создания записи
+    google.protobuf.Timestamp last_login = 22;                        // Дата последнего входа пользователя
+    google.protobuf.BoolValue is_online = 23;                        // Залочен ли пользователь(заблокирован или нет)
+    google.protobuf.Timestamp last_online = 24;                        // Дата последнего входа пользователя
+
+}
+
+message UsersMsgReq {
+    UsersMsg paramsFiltering = 1;
+    google.protobuf.UInt64Value offset = 2;
+    google.protobuf.UInt64Value limit = 3;
+    map<string, string> likeFields = 4;
+}

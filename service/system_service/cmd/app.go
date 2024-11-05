@@ -35,6 +35,7 @@ func main() {
 	backgroundJobModule.StartJobsAll()
 
 	log.Println("✅ Start background jobs service...")
+
 	// Ожидание сигнала для корректного завершения программы
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
