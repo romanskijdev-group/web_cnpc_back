@@ -40,6 +40,51 @@ type UserServiceClient interface {
 	UpdateUserAvatarURL(ctx context.Context, in *UpdateUserAvatarURLReq, opts ...grpc.CallOption) (*Empty, error)
 }
 
+func (u UserServiceClient) UserLoginAccount(ctx context.Context, req *UserAuthReqAccountReq) (*LogInInfoRes, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u UserServiceClient) GetUserProfile(ctx context.Context, msg *UsersMsg) (*UsersMsg, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u UserServiceClient) GetUsersInfoList(ctx context.Context, msg *UsersMsg) (*UsersMsgList, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u UserServiceClient) UpdateUserProfile(ctx context.Context, msg *UsersMsg) (*UsersMsg, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u UserServiceClient) CreateNewUser(ctx context.Context, msg *UsersMsg) (*UsersMsg, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u UserServiceClient) DeleteUser(ctx context.Context, msg *UsersMsg) (*Empty, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u UserServiceClient) CheckCodeBotAuthUserValid(ctx context.Context, req *UserAuthReqAccountReq) (*LogInInfoRes, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u UserServiceClient) UpdateUserAvatarURL(ctx context.Context, req *UpdateUserAvatarURLReq) (*Empty, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u UserServiceClient) mustEmbedUnimplementedUserServiceServer() {
+	//TODO implement me
+	panic("implement me")
+}
+
 type userServiceClient struct {
 	cc grpc.ClientConnInterface
 }
