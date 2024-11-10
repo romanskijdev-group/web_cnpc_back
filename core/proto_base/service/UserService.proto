@@ -9,7 +9,7 @@ import "messages/Empty.proto";
 import "messages/LogInInfoRes.proto";
 import "messages/UserAuthReqAccountReq.proto";
 
-service UserService {
+service UserAccountServiceProto {
   // вход пользователя в аккаунт
   rpc UserLoginAccount(UserAuthReqAccountReq) returns (LogInInfoRes) {}
 

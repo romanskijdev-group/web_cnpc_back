@@ -4,7 +4,6 @@ import (
 	"cnpc_backend/core/config"
 	grpccore "cnpc_backend/core/grpc_core/grpc"
 	restauthcore "cnpc_backend/core/module/rest_auth"
-	userssubsdb "cnpc_backend/core/module/user/subscription/db"
 	usersdb "cnpc_backend/core/module/user/users/db"
 	protoobj "cnpc_backend/core/proto"
 	awss3api "cnpc_backend/core/services/external_services/aws_s3_api"
@@ -18,7 +17,8 @@ import (
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"log"
 	"net"
-	useraccountmodule "userservice/module/user_account"
+	grpcclients "userservice/grpc_clients"
+	useraccount "userservice/module"
 	"userservice/types"
 )
 
@@ -40,6 +40,12 @@ func main() {
 	log.Println("⭐️⭐️⭐️ user-service started: ", serverStartURI)
 
 	ipc := initInternalProvider(cfg)
+
+	protoOpt := grpcclients.CreateDialOptionsProto()
+	ipc.Clients = types.Clients{
+		NotificationServiceProto: grpcclients.InitClientNotificationServiceProto(protoOpt, cfg),
+	}
+
 	ipc = initModules(cfg, ipc)
 
 	startGRPC(ipc, serverStartURI)
@@ -50,9 +56,8 @@ func startGRPC(ipc *types.InternalProviderControl, addressService string) {
 	if err != nil {
 		log.Fatalf("🔴 Failed to create gRPC server: %v", err)
 	}
-
 	// Регистрация сервисов на сервере
-	protoobj.RegisterUserServiceServer(server, useraccountmodule.NewUserAccountServiceProto(ipc))
+	protoobj.RegisterUserAccountServiceProtoServer(server, useraccount.NewUserAccountServiceProto(ipc))
 
 	// Создание и регистрация сервера проверки состояния
 	healthServer := health.NewServer()
@@ -78,7 +83,7 @@ func initModules(config *typescore.Config, ipc *types.InternalProviderControl) *
 	ipc.Database = types.DatabaseModuleI{
 		UsersActions: usersdb.NewUsersDB(configModules),
 		//ReferralBonus:      referralbonusesdb.NewReferralBonusesDB(configModules),
-		UsersSubscriptions: userssubsdb.NewUsersSubscriptionDB(configModules),
+		//UsersSubscriptions: userssubsdb.NewUsersSubscriptionDB(configModules),
 	}
 	ipc.Modules = types.Modules{
 		RestAuth: restauthcore.InitNewModule(configModules),

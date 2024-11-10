@@ -11,7 +11,7 @@ import (
 )
 
 type Clients struct {
-	UserAccountServiceProto  protoobj.UserServiceClient
+	UserAccountServiceProto  protoobj.UserAccountServiceProtoClient
 	NotificationServiceProto protoobj.NotificationServiceProtoClient
 }
 

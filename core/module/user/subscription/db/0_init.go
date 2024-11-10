@@ -1,10 +1,10 @@
 package userssubsdb
 
 import (
+	redismodule "cnpc_backend/core/services/internal_services/redis"
+	"cnpc_backend/core/typescore"
 	"context"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"zod_backend_dev/core/models"
-	redismodule "zod_backend_dev/core/services/internal_services/redis"
 )
 
 var TableName = "users_subscriptions"
@@ -14,7 +14,7 @@ type ModuleDB struct {
 	RedisClient  *redismodule.ModuleRedis
 }
 
-func NewUsersSubscriptionDB(configModule *models.ModuleDBConfig) UsersSubscriptionDBI {
+func NewUsersSubscriptionDB(configModule *typescore.ModuleDBConfig) UsersSubscriptionDBI {
 	return &ModuleDB{
 		DatabasePull: configModule.DatabasePull,
 		RedisClient:  configModule.RedisClient,
@@ -22,9 +22,9 @@ func NewUsersSubscriptionDB(configModule *models.ModuleDBConfig) UsersSubscripti
 }
 
 type UsersSubscriptionDBI interface {
-	UpdateUserSubscriptionDB(ctx context.Context, paramsUpdate *models.UsersSubscriptions) (*models.UsersSubscriptions, *models.WEvent)
-	CreateUserSubscriptionDB(ctx context.Context, userObj *models.UsersSubscriptions) (*models.UsersSubscriptions, *models.WEvent)
-	GetUsersSubscriptionsListDB(ctx context.Context, paramsFiltering *models.UsersSubscriptions, likeFields map[string]string, offset *uint64, limit *uint64) ([]*models.UsersSubscriptions, *models.WEvent)
-	GetUserSubscriptionDB(ctx context.Context, paramsFiltering *models.UsersSubscriptions) (*models.UsersSubscriptions, *models.WEvent)
-	GetUsersLimitsCountDB(ctx context.Context, paramsFiltering *models.UsersSubscriptions, likeFields map[string]string) (uint64, *models.WEvent)
+	UpdateUserSubscriptionDB(ctx context.Context, paramsUpdate *typescore.UsersSubscriptions) (*typescore.UsersSubscriptions, *typescore.WEvent)
+	CreateUserSubscriptionDB(ctx context.Context, userObj *typescore.UsersSubscriptions) (*typescore.UsersSubscriptions, *typescore.WEvent)
+	GetUsersSubscriptionsListDB(ctx context.Context, paramsFiltering *typescore.UsersSubscriptions, likeFields map[string]string, offset *uint64, limit *uint64) ([]*typescore.UsersSubscriptions, *typescore.WEvent)
+	GetUserSubscriptionDB(ctx context.Context, paramsFiltering *typescore.UsersSubscriptions) (*typescore.UsersSubscriptions, *models.WEvent)
+	GetUsersLimitsCountDB(ctx context.Context, paramsFiltering *typescore.UsersSubscriptions, likeFields map[string]string) (uint64, *models.WEvent)
 }

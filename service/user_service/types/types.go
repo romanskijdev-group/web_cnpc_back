@@ -2,8 +2,8 @@ package types
 
 import (
 	restauthcore "cnpc_backend/core/module/rest_auth"
-	userssubsdb "cnpc_backend/core/module/user/subscription/db"
 	usersdb "cnpc_backend/core/module/user/users/db"
+	protoobj "cnpc_backend/core/proto"
 	awss3api "cnpc_backend/core/services/external_services/aws_s3_api"
 	redismodule "cnpc_backend/core/services/internal_services/redis"
 	"cnpc_backend/core/typescore"
@@ -11,6 +11,7 @@ import (
 )
 
 type Clients struct {
+	NotificationServiceProto protoobj.NotificationServiceProtoClient
 }
 
 type Modules struct {
@@ -20,7 +21,7 @@ type Modules struct {
 type DatabaseModuleI struct {
 	UsersActions usersdb.UsersProviderControlsDBI
 	//ReferralBonus      referralbonusesdb.ReferralBonusesDBI
-	UsersSubscriptions userssubsdb.UsersSubscriptionDBI
+	//UsersSubscriptions userssubsdb.UsersSubscriptionDBI
 }
 
 type InternalProviderControl struct {
