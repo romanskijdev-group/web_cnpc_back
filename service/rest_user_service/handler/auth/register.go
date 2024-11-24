@@ -29,6 +29,12 @@ func (h *AuthUser) RegisterAuthByToken(router *chi.Mux) {
 			HandlerFunc:              h.AuthUserToken.OAuthMailGetPass,
 			UserAuthorizationChecked: utilscore.PointerToBool(false),
 		},
+		{
+			Method:                   http.MethodPost,
+			Url:                      oauthVKMiniApp,
+			HandlerFunc:              h.AuthUserToken.OAuthVKAuth,
+			UserAuthorizationChecked: utilscore.PointerToBool(false),
+		},
 	}
 
 	handler.RegisterRoutesRelief(router, routes, h.ipc)

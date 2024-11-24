@@ -17,7 +17,7 @@ service UserAccountServiceProto {
   rpc GetUserProfile(UsersMsg) returns (UsersMsg) {}  //
 
   // получение профилей пользователей
-  rpc GetUsersInfoList(UsersMsg) returns (UsersMsgList) {}
+  rpc GetUsersInfoList(UsersMsgReq) returns (UsersMsgList) {}
 
   // обновление информаций о пользователе
   rpc UpdateUserProfile(UsersMsg) returns (UsersMsg) {}

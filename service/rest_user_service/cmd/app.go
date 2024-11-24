@@ -11,6 +11,8 @@ import (
 	"cnpc_backend/core/typescore"
 	grpcclients "cnpc_backend/rest_user_service/grpc_clients"
 	authuser "cnpc_backend/rest_user_service/handler/auth"
+	userprofile "cnpc_backend/rest_user_service/handler/profile"
+	usershandler "cnpc_backend/rest_user_service/handler/users"
 	"cnpc_backend/rest_user_service/types"
 	"errors"
 	"fmt"
@@ -95,6 +97,12 @@ func registerRouters(ipc *types.InternalProviderControl, router *chi.Mux) {
 	// Регистрация обработчика авторизации
 	authUser := authuser.NewAuthUser(ipc)
 	authUser.RegisterAuthByToken(router)
+
+	profile := userprofile.NewHandlerAccount(ipc)
+	profile.RegisterProfile(router)
+
+	users := usershandler.NewHandlerUsers(ipc)
+	users.RegisterUsers(router)
 }
 
 // запуск сервера REST API

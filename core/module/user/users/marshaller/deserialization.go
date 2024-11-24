@@ -47,11 +47,11 @@ func UserAuthReqAccountReqDeserialization(obj *protoobj.UserAuthReqAccountReq) *
 		TelegramID:        d.OptionalInt64(obj.TelegramID),
 		EmailCode:         d.OptionalString(obj.EmailCode),
 		SystemID:          d.OptionalString(obj.SystemID),
-
-		Code:             d.OptionalString(obj.Code),
-		Secret:           d.OptionalString(obj.Secret),
-		DetectorIPStruct: DetectorIPStructDeserialization(obj.DetectorIPStruct),
-		AuthType:         mapTypeAuthDeserialization(obj.AuthType),
+		VKID:              d.OptionalInt64(obj.VKID),
+		Code:              d.OptionalString(obj.Code),
+		Secret:            d.OptionalString(obj.Secret),
+		DetectorIPStruct:  DetectorIPStructDeserialization(obj.DetectorIPStruct),
+		AuthType:          mapTypeAuthDeserialization(obj.AuthType),
 	}
 }
 
@@ -125,6 +125,7 @@ func UsersProviderControlDeserialization(obj *protoobj.UsersMsg) *typescore.User
 		Role:                mapRoleDeserialization(obj.Role),
 		Email:               d.OptionalString(obj.Email),
 		TelegramID:          d.OptionalInt64(obj.TelegramId),
+		VKID:                d.OptionalInt64(obj.VkId),
 		Nickname:            d.OptionalString(obj.Nickname),
 		FirstName:           d.OptionalString(obj.FirstName),
 		LastName:            d.OptionalString(obj.LastName),
@@ -191,6 +192,9 @@ func mapTypeAuthDeserialization(authType protoobj.TypeAuth) *typescore.TypeAuth 
 	switch authType {
 	case protoobj.TypeAuth_TypeAuth_email_auth:
 		t := typescore.EmailType
+		return &t
+	case protoobj.TypeAuth_TypeAuth_vk:
+		t := typescore.VKType
 		return &t
 	case protoobj.TypeAuth_TypeAuth_telegram:
 		t := typescore.TelegramType

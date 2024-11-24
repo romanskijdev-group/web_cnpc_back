@@ -53,11 +53,11 @@ func (s *UserAccountServiceProto) GetUserProfile(ctx context.Context, obj *proto
 }
 
 // получение информаций о профилях пользователей
-func (s *UserAccountServiceProto) GetUsersInfoList(ctx context.Context, obj *protoobj.UsersMsg) (*protoobj.UsersMsgList, error) {
+func (s *UserAccountServiceProto) GetUsersInfoList(ctx context.Context, obj *protoobj.UsersMsgReq) (*protoobj.UsersMsgList, error) {
 	// logrus.Info("🚀 GetUsersInfoList")
-	paramsObj := marshallerusers.UsersProviderControlDeserialization(obj)
+	paramsObj, offset, limit, likeFields := marshallerusers.UserMsgReqDeserialization(obj)
 
-	objList, errW := s.ipc.Database.UsersActions.GetUsersListDB(ctx, paramsObj, map[string]string{}, nil, nil)
+	objList, errW := s.ipc.Database.UsersActions.GetUsersListDB(ctx, paramsObj, likeFields, offset, limit)
 	if errW != nil {
 		return nil, errW.Err
 	}

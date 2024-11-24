@@ -27,7 +27,7 @@ type UserAccountServiceProtoClient interface {
 	// получение профиля пользователя
 	GetUserProfile(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error)
 	// получение профилей пользователей
-	GetUsersInfoList(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsgList, error)
+	GetUsersInfoList(ctx context.Context, in *UsersMsgReq, opts ...grpc.CallOption) (*UsersMsgList, error)
 	// обновление информаций о пользователе
 	UpdateUserProfile(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error)
 	// создание пользователя
@@ -66,7 +66,7 @@ func (c *userAccountServiceProtoClient) GetUserProfile(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *userAccountServiceProtoClient) GetUsersInfoList(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsgList, error) {
+func (c *userAccountServiceProtoClient) GetUsersInfoList(ctx context.Context, in *UsersMsgReq, opts ...grpc.CallOption) (*UsersMsgList, error) {
 	out := new(UsersMsgList)
 	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/GetUsersInfoList", in, out, opts...)
 	if err != nil {
@@ -129,7 +129,7 @@ type UserAccountServiceProtoServer interface {
 	// получение профиля пользователя
 	GetUserProfile(context.Context, *UsersMsg) (*UsersMsg, error)
 	// получение профилей пользователей
-	GetUsersInfoList(context.Context, *UsersMsg) (*UsersMsgList, error)
+	GetUsersInfoList(context.Context, *UsersMsgReq) (*UsersMsgList, error)
 	// обновление информаций о пользователе
 	UpdateUserProfile(context.Context, *UsersMsg) (*UsersMsg, error)
 	// создание пользователя
@@ -153,7 +153,7 @@ func (UnimplementedUserAccountServiceProtoServer) UserLoginAccount(context.Conte
 func (UnimplementedUserAccountServiceProtoServer) GetUserProfile(context.Context, *UsersMsg) (*UsersMsg, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserProfile not implemented")
 }
-func (UnimplementedUserAccountServiceProtoServer) GetUsersInfoList(context.Context, *UsersMsg) (*UsersMsgList, error) {
+func (UnimplementedUserAccountServiceProtoServer) GetUsersInfoList(context.Context, *UsersMsgReq) (*UsersMsgList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsersInfoList not implemented")
 }
 func (UnimplementedUserAccountServiceProtoServer) UpdateUserProfile(context.Context, *UsersMsg) (*UsersMsg, error) {
@@ -222,7 +222,7 @@ func _UserAccountServiceProto_GetUserProfile_Handler(srv interface{}, ctx contex
 }
 
 func _UserAccountServiceProto_GetUsersInfoList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UsersMsg)
+	in := new(UsersMsgReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -234,7 +234,7 @@ func _UserAccountServiceProto_GetUsersInfoList_Handler(srv interface{}, ctx cont
 		FullMethod: "/msg.UserAccountServiceProto/GetUsersInfoList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAccountServiceProtoServer).GetUsersInfoList(ctx, req.(*UsersMsg))
+		return srv.(UserAccountServiceProtoServer).GetUsersInfoList(ctx, req.(*UsersMsgReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

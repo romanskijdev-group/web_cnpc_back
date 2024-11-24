@@ -114,3 +114,21 @@ func (s *UserAccountServiceProto) emailLogin(req *typescore.UserAuthReqAccountRe
 	}
 	return userObj, false, nil
 }
+
+// обрабатывает вход пользователя по email
+func (s *UserAccountServiceProto) vkLogin(req *typescore.UserAuthReqAccountReq) (*typescore.UsersProviderControl, bool, error) {
+	// Если тип входа - Email
+	if req.VKID == nil {
+		return nil, true, errors.New("user_not_finder")
+	}
+
+	findObjUer := &typescore.UsersProviderControl{
+		VKID: req.VKID,
+	}
+
+	userObj := s.findUserInfo(findObjUer)
+	if userObj == nil || userObj.SystemID == nil {
+		return findObjUer, true, nil
+	}
+	return userObj, false, nil
+}

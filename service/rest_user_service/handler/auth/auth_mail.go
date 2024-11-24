@@ -62,7 +62,6 @@ func (h *HandlerAuthByToken) OAuthMailGetPass(w http.ResponseWriter, r *http.Req
 		return nil, nil, errW
 	}
 
-	println(code)
 	tempPassCategoryNotify := typescore.TemporaryPasswordNotifyCategory
 	notifyParamsPr := marshallernotification.NotifyParamsSerialization(&typescore.NotifyParams{
 		Text:        code,

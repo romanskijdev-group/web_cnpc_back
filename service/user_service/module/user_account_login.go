@@ -30,6 +30,9 @@ func (s *UserAccountServiceProto) authUser(req *typescore.UserAuthReqAccountReq)
 	case typescore.EmailType:
 		// Если тип входа - Email
 		return s.emailLogin(req)
+	case typescore.VKType:
+		// Если тип входа - VK
+		return s.vkLogin(req)
 	default:
 		// Если тип входа не распознан
 		return nil, true, errors.New("invalid login type")

@@ -80,11 +80,11 @@ func UserAuthReqAccountReqSerialization(obj *typescore.UserAuthReqAccountReq) *p
 		TelegramID:        s.Int64ToWrapperInt64Value(obj.TelegramID),
 		EmailCode:         s.StringToWrapperStringValue(obj.EmailCode),
 		SystemID:          s.StringToWrapperStringValue(obj.SystemID),
-
-		Code:             s.StringToWrapperStringValue(obj.Code),
-		Secret:           s.StringToWrapperStringValue(obj.Secret),
-		DetectorIPStruct: DetectorIPStructSerialization(obj.DetectorIPStruct),
-		AuthType:         mapTypeAuthSerialization(obj.AuthType),
+		VKID:              s.Int64ToWrapperInt64Value(obj.VKID),
+		Code:              s.StringToWrapperStringValue(obj.Code),
+		Secret:            s.StringToWrapperStringValue(obj.Secret),
+		DetectorIPStruct:  DetectorIPStructSerialization(obj.DetectorIPStruct),
+		AuthType:          mapTypeAuthSerialization(obj.AuthType),
 	}
 }
 
@@ -127,6 +127,7 @@ func UsersProviderControlSerialization(obj *typescore.UsersProviderControl) *pro
 		Role:                mapRoleSerialization(obj.Role),
 		Email:               s.StringToWrapperStringValue(obj.Email),
 		TelegramId:          s.Int64ToWrapperInt64Value(obj.TelegramID),
+		VkId:                s.Int64ToWrapperInt64Value(obj.VKID),
 		Nickname:            s.StringToWrapperStringValue(obj.Nickname),
 		FirstName:           s.StringToWrapperStringValue(obj.FirstName),
 		LastName:            s.StringToWrapperStringValue(obj.LastName),
@@ -193,6 +194,8 @@ func mapTypeAuthSerialization(authType *typescore.TypeAuth) protoobj.TypeAuth {
 	switch *authType {
 	case typescore.EmailType:
 		return protoobj.TypeAuth_TypeAuth_email_auth
+	case typescore.VKType:
+		return protoobj.TypeAuth_TypeAuth_vk
 	case typescore.TelegramType:
 		return protoobj.TypeAuth_TypeAuth_telegram
 	case typescore.AuthTokenType:
@@ -200,4 +203,32 @@ func mapTypeAuthSerialization(authType *typescore.TypeAuth) protoobj.TypeAuth {
 	default:
 		return protoobj.TypeAuth_TypeAuth_NULL
 	}
+}
+
+func UserMsgReqSerialization(user *typescore.UsersProviderControl,
+	offset *uint64, limit *uint64, likesFiled map[string]string) *protoobj.UsersMsgReq {
+	if user == nil {
+		return nil
+	}
+	s := marshallerutils.InitSerializationUtils()
+	userObj := UsersProviderControlSerialization(user)
+
+	return &protoobj.UsersMsgReq{
+		ParamsFiltering: userObj,
+		Offset:          s.Uint64ToWrapperUInt64Value(offset),
+		Limit:           s.Uint64ToWrapperUInt64Value(limit),
+		LikeFields:      likesFiled,
+	}
+}
+
+func UserMsgReqDeserialization(obj *protoobj.UsersMsgReq) (*typescore.UsersProviderControl, *uint64, *uint64, map[string]string) {
+	if obj == nil {
+		return nil, nil, nil, nil
+	}
+	d := marshallerutils.InitDeserializationUtils()
+	user := UsersProviderControlDeserialization(obj.ParamsFiltering)
+	return user,
+		d.OptionalUint64(obj.Offset),
+		d.OptionalUint64(obj.Limit), obj.LikeFields
+
 }

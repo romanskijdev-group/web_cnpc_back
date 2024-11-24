@@ -74,8 +74,8 @@ func GenerateTemporarySecretUser(redisClient *redis.Client, userIdent string, li
 
 	userIdent = fmt.Sprintf("%s:%s", typeSignature, userIdent)
 
-	co, err := redisClient.Get(ctx, userIdent).Result()
-	println(co)
+	_, err := redisClient.Get(ctx, userIdent).Result()
+
 	if errors.Is(err, redis.Nil) {
 		// Код не найден, продолжаем и генерируем новый
 		err := redisClient.Set(ctx, userIdent, *secretStr, time.Duration(lifeTime)*time.Minute).Err()
