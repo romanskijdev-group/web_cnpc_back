@@ -18,16 +18,16 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// UserServiceClient is the client API for UserService service.
+// UserAccountServiceProtoClient is the client API for UserAccountServiceProto service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserServiceClient interface {
+type UserAccountServiceProtoClient interface {
 	// вход пользователя в аккаунт
 	UserLoginAccount(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error)
 	// получение профиля пользователя
 	GetUserProfile(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error)
 	// получение профилей пользователей
-	GetUsersInfoList(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsgList, error)
+	GetUsersInfoList(ctx context.Context, in *UsersMsgReq, opts ...grpc.CallOption) (*UsersMsgList, error)
 	// обновление информаций о пользователе
 	UpdateUserProfile(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error)
 	// создание пользователя
@@ -40,96 +40,96 @@ type UserServiceClient interface {
 	UpdateUserAvatarURL(ctx context.Context, in *UpdateUserAvatarURLReq, opts ...grpc.CallOption) (*Empty, error)
 }
 
-type userServiceClient struct {
+type userAccountServiceProtoClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
-	return &userServiceClient{cc}
+func NewUserAccountServiceProtoClient(cc grpc.ClientConnInterface) UserAccountServiceProtoClient {
+	return &userAccountServiceProtoClient{cc}
 }
 
-func (c *userServiceClient) UserLoginAccount(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error) {
+func (c *userAccountServiceProtoClient) UserLoginAccount(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error) {
 	out := new(LogInInfoRes)
-	err := c.cc.Invoke(ctx, "/msg.UserService/UserLoginAccount", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/UserLoginAccount", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) GetUserProfile(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error) {
+func (c *userAccountServiceProtoClient) GetUserProfile(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error) {
 	out := new(UsersMsg)
-	err := c.cc.Invoke(ctx, "/msg.UserService/GetUserProfile", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/GetUserProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) GetUsersInfoList(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsgList, error) {
+func (c *userAccountServiceProtoClient) GetUsersInfoList(ctx context.Context, in *UsersMsgReq, opts ...grpc.CallOption) (*UsersMsgList, error) {
 	out := new(UsersMsgList)
-	err := c.cc.Invoke(ctx, "/msg.UserService/GetUsersInfoList", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/GetUsersInfoList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) UpdateUserProfile(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error) {
+func (c *userAccountServiceProtoClient) UpdateUserProfile(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error) {
 	out := new(UsersMsg)
-	err := c.cc.Invoke(ctx, "/msg.UserService/UpdateUserProfile", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/UpdateUserProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) CreateNewUser(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error) {
+func (c *userAccountServiceProtoClient) CreateNewUser(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error) {
 	out := new(UsersMsg)
-	err := c.cc.Invoke(ctx, "/msg.UserService/CreateNewUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/CreateNewUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) DeleteUser(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*Empty, error) {
+func (c *userAccountServiceProtoClient) DeleteUser(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, "/msg.UserService/DeleteUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/DeleteUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) CheckCodeBotAuthUserValid(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error) {
+func (c *userAccountServiceProtoClient) CheckCodeBotAuthUserValid(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error) {
 	out := new(LogInInfoRes)
-	err := c.cc.Invoke(ctx, "/msg.UserService/CheckCodeBotAuthUserValid", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/CheckCodeBotAuthUserValid", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) UpdateUserAvatarURL(ctx context.Context, in *UpdateUserAvatarURLReq, opts ...grpc.CallOption) (*Empty, error) {
+func (c *userAccountServiceProtoClient) UpdateUserAvatarURL(ctx context.Context, in *UpdateUserAvatarURLReq, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, "/msg.UserService/UpdateUserAvatarURL", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/UpdateUserAvatarURL", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserServiceServer is the server API for UserService service.
-// All implementations must embed UnimplementedUserServiceServer
+// UserAccountServiceProtoServer is the server API for UserAccountServiceProto service.
+// All implementations must embed UnimplementedUserAccountServiceProtoServer
 // for forward compatibility
-type UserServiceServer interface {
+type UserAccountServiceProtoServer interface {
 	// вход пользователя в аккаунт
 	UserLoginAccount(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error)
 	// получение профиля пользователя
 	GetUserProfile(context.Context, *UsersMsg) (*UsersMsg, error)
 	// получение профилей пользователей
-	GetUsersInfoList(context.Context, *UsersMsg) (*UsersMsgList, error)
+	GetUsersInfoList(context.Context, *UsersMsgReq) (*UsersMsgList, error)
 	// обновление информаций о пользователе
 	UpdateUserProfile(context.Context, *UsersMsg) (*UsersMsg, error)
 	// создание пользователя
@@ -140,232 +140,233 @@ type UserServiceServer interface {
 	CheckCodeBotAuthUserValid(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error)
 	// обновление аватара пользователя
 	UpdateUserAvatarURL(context.Context, *UpdateUserAvatarURLReq) (*Empty, error)
-	mustEmbedUnimplementedUserServiceServer()
+	mustEmbedUnimplementedUserAccountServiceProtoServer()
 }
 
-// UnimplementedUserServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedUserServiceServer struct {
+// UnimplementedUserAccountServiceProtoServer must be embedded to have forward compatible implementations.
+type UnimplementedUserAccountServiceProtoServer struct {
 }
 
-func (UnimplementedUserServiceServer) UserLoginAccount(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error) {
+func (UnimplementedUserAccountServiceProtoServer) UserLoginAccount(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserLoginAccount not implemented")
 }
-func (UnimplementedUserServiceServer) GetUserProfile(context.Context, *UsersMsg) (*UsersMsg, error) {
+func (UnimplementedUserAccountServiceProtoServer) GetUserProfile(context.Context, *UsersMsg) (*UsersMsg, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserProfile not implemented")
 }
-func (UnimplementedUserServiceServer) GetUsersInfoList(context.Context, *UsersMsg) (*UsersMsgList, error) {
+func (UnimplementedUserAccountServiceProtoServer) GetUsersInfoList(context.Context, *UsersMsgReq) (*UsersMsgList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsersInfoList not implemented")
 }
-func (UnimplementedUserServiceServer) UpdateUserProfile(context.Context, *UsersMsg) (*UsersMsg, error) {
+func (UnimplementedUserAccountServiceProtoServer) UpdateUserProfile(context.Context, *UsersMsg) (*UsersMsg, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserProfile not implemented")
 }
-func (UnimplementedUserServiceServer) CreateNewUser(context.Context, *UsersMsg) (*UsersMsg, error) {
+func (UnimplementedUserAccountServiceProtoServer) CreateNewUser(context.Context, *UsersMsg) (*UsersMsg, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateNewUser not implemented")
 }
-func (UnimplementedUserServiceServer) DeleteUser(context.Context, *UsersMsg) (*Empty, error) {
+func (UnimplementedUserAccountServiceProtoServer) DeleteUser(context.Context, *UsersMsg) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedUserServiceServer) CheckCodeBotAuthUserValid(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error) {
+func (UnimplementedUserAccountServiceProtoServer) CheckCodeBotAuthUserValid(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckCodeBotAuthUserValid not implemented")
 }
-func (UnimplementedUserServiceServer) UpdateUserAvatarURL(context.Context, *UpdateUserAvatarURLReq) (*Empty, error) {
+func (UnimplementedUserAccountServiceProtoServer) UpdateUserAvatarURL(context.Context, *UpdateUserAvatarURLReq) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserAvatarURL not implemented")
 }
-func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
+func (UnimplementedUserAccountServiceProtoServer) mustEmbedUnimplementedUserAccountServiceProtoServer() {
+}
 
-// UnsafeUserServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserServiceServer will
+// UnsafeUserAccountServiceProtoServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserAccountServiceProtoServer will
 // result in compilation errors.
-type UnsafeUserServiceServer interface {
-	mustEmbedUnimplementedUserServiceServer()
+type UnsafeUserAccountServiceProtoServer interface {
+	mustEmbedUnimplementedUserAccountServiceProtoServer()
 }
 
-func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
-	s.RegisterService(&UserService_ServiceDesc, srv)
+func RegisterUserAccountServiceProtoServer(s grpc.ServiceRegistrar, srv UserAccountServiceProtoServer) {
+	s.RegisterService(&UserAccountServiceProto_ServiceDesc, srv)
 }
 
-func _UserService_UserLoginAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserAccountServiceProto_UserLoginAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserAuthReqAccountReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).UserLoginAccount(ctx, in)
+		return srv.(UserAccountServiceProtoServer).UserLoginAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/msg.UserService/UserLoginAccount",
+		FullMethod: "/msg.UserAccountServiceProto/UserLoginAccount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UserLoginAccount(ctx, req.(*UserAuthReqAccountReq))
+		return srv.(UserAccountServiceProtoServer).UserLoginAccount(ctx, req.(*UserAuthReqAccountReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserAccountServiceProto_GetUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UsersMsg)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).GetUserProfile(ctx, in)
+		return srv.(UserAccountServiceProtoServer).GetUserProfile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/msg.UserService/GetUserProfile",
+		FullMethod: "/msg.UserAccountServiceProto/GetUserProfile",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetUserProfile(ctx, req.(*UsersMsg))
+		return srv.(UserAccountServiceProtoServer).GetUserProfile(ctx, req.(*UsersMsg))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetUsersInfoList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserAccountServiceProto_GetUsersInfoList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsersMsgReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserAccountServiceProtoServer).GetUsersInfoList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.UserAccountServiceProto/GetUsersInfoList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserAccountServiceProtoServer).GetUsersInfoList(ctx, req.(*UsersMsgReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserAccountServiceProto_UpdateUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UsersMsg)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).GetUsersInfoList(ctx, in)
+		return srv.(UserAccountServiceProtoServer).UpdateUserProfile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/msg.UserService/GetUsersInfoList",
+		FullMethod: "/msg.UserAccountServiceProto/UpdateUserProfile",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetUsersInfoList(ctx, req.(*UsersMsg))
+		return srv.(UserAccountServiceProtoServer).UpdateUserProfile(ctx, req.(*UsersMsg))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_UpdateUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserAccountServiceProto_CreateNewUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UsersMsg)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).UpdateUserProfile(ctx, in)
+		return srv.(UserAccountServiceProtoServer).CreateNewUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/msg.UserService/UpdateUserProfile",
+		FullMethod: "/msg.UserAccountServiceProto/CreateNewUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UpdateUserProfile(ctx, req.(*UsersMsg))
+		return srv.(UserAccountServiceProtoServer).CreateNewUser(ctx, req.(*UsersMsg))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_CreateNewUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserAccountServiceProto_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UsersMsg)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CreateNewUser(ctx, in)
+		return srv.(UserAccountServiceProtoServer).DeleteUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/msg.UserService/CreateNewUser",
+		FullMethod: "/msg.UserAccountServiceProto/DeleteUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CreateNewUser(ctx, req.(*UsersMsg))
+		return srv.(UserAccountServiceProtoServer).DeleteUser(ctx, req.(*UsersMsg))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UsersMsg)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).DeleteUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/msg.UserService/DeleteUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).DeleteUser(ctx, req.(*UsersMsg))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_CheckCodeBotAuthUserValid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserAccountServiceProto_CheckCodeBotAuthUserValid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserAuthReqAccountReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CheckCodeBotAuthUserValid(ctx, in)
+		return srv.(UserAccountServiceProtoServer).CheckCodeBotAuthUserValid(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/msg.UserService/CheckCodeBotAuthUserValid",
+		FullMethod: "/msg.UserAccountServiceProto/CheckCodeBotAuthUserValid",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CheckCodeBotAuthUserValid(ctx, req.(*UserAuthReqAccountReq))
+		return srv.(UserAccountServiceProtoServer).CheckCodeBotAuthUserValid(ctx, req.(*UserAuthReqAccountReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_UpdateUserAvatarURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserAccountServiceProto_UpdateUserAvatarURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateUserAvatarURLReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).UpdateUserAvatarURL(ctx, in)
+		return srv.(UserAccountServiceProtoServer).UpdateUserAvatarURL(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/msg.UserService/UpdateUserAvatarURL",
+		FullMethod: "/msg.UserAccountServiceProto/UpdateUserAvatarURL",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UpdateUserAvatarURL(ctx, req.(*UpdateUserAvatarURLReq))
+		return srv.(UserAccountServiceProtoServer).UpdateUserAvatarURL(ctx, req.(*UpdateUserAvatarURLReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
+// UserAccountServiceProto_ServiceDesc is the grpc.ServiceDesc for UserAccountServiceProto service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "msg.UserService",
-	HandlerType: (*UserServiceServer)(nil),
+var UserAccountServiceProto_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "msg.UserAccountServiceProto",
+	HandlerType: (*UserAccountServiceProtoServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "UserLoginAccount",
-			Handler:    _UserService_UserLoginAccount_Handler,
+			Handler:    _UserAccountServiceProto_UserLoginAccount_Handler,
 		},
 		{
 			MethodName: "GetUserProfile",
-			Handler:    _UserService_GetUserProfile_Handler,
+			Handler:    _UserAccountServiceProto_GetUserProfile_Handler,
 		},
 		{
 			MethodName: "GetUsersInfoList",
-			Handler:    _UserService_GetUsersInfoList_Handler,
+			Handler:    _UserAccountServiceProto_GetUsersInfoList_Handler,
 		},
 		{
 			MethodName: "UpdateUserProfile",
-			Handler:    _UserService_UpdateUserProfile_Handler,
+			Handler:    _UserAccountServiceProto_UpdateUserProfile_Handler,
 		},
 		{
 			MethodName: "CreateNewUser",
-			Handler:    _UserService_CreateNewUser_Handler,
+			Handler:    _UserAccountServiceProto_CreateNewUser_Handler,
 		},
 		{
 			MethodName: "DeleteUser",
-			Handler:    _UserService_DeleteUser_Handler,
+			Handler:    _UserAccountServiceProto_DeleteUser_Handler,
 		},
 		{
 			MethodName: "CheckCodeBotAuthUserValid",
-			Handler:    _UserService_CheckCodeBotAuthUserValid_Handler,
+			Handler:    _UserAccountServiceProto_CheckCodeBotAuthUserValid_Handler,
 		},
 		{
 			MethodName: "UpdateUserAvatarURL",
-			Handler:    _UserService_UpdateUserAvatarURL_Handler,
+			Handler:    _UserAccountServiceProto_UpdateUserAvatarURL_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

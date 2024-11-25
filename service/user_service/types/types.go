@@ -11,7 +11,6 @@ import (
 )
 
 type Clients struct {
-	UserAccountServiceProto  protoobj.UserAccountServiceProtoClient
 	NotificationServiceProto protoobj.NotificationServiceProtoClient
 }
 
@@ -19,16 +18,19 @@ type Modules struct {
 	RestAuth *restauthcore.ModuleRestAuth
 }
 
-type DatabaseI struct {
-	UsersDB usersdb.UsersProviderControlsDBI
+type DatabaseModuleI struct {
+	UsersActions usersdb.UsersProviderControlsDBI
+	//ReferralBonus      referralbonusesdb.ReferralBonusesDBI
+	//UsersSubscriptions userssubsdb.UsersSubscriptionDBI
 }
 
 type InternalProviderControl struct {
-	Config       *typescore.Config
+	Config *typescore.Config
+
 	DatabasePull *pgxpool.Pool
 	RedisClient  *redismodule.ModuleRedis
-	Modules      Modules
-	Clients      Clients
 	Storage      awss3api.AWSS3CloudStorageI
-	Database     DatabaseI
+	Clients      Clients
+	Modules      Modules
+	Database     DatabaseModuleI
 }

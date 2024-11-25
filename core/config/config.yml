@@ -24,8 +24,8 @@ redis:
 secure_params:
   jwt_secret: "test"
   salt: "test"
-  session_token_hours_life: 8
-  admin_session_token_hours_life: 72
+  session_token_hours_life: 72
+  admin_session_token_hours_life: 12
   temporary_password_life_minute: 5
 vk_api:
   client_id: "bZUSYsKKHKnXBaKk9OwX"

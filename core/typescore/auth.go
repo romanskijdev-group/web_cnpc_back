@@ -23,6 +23,10 @@ type AuthMailGetPassReq struct {
 	Email *string `json:"email"`
 }
 
+type AuthVKReq struct {
+	VkID *int64 `json:"vk_id"`
+}
+
 type OAuthMailConfPassReq struct {
 	Email             *string `json:"email"`
 	TemporaryPassword *string `json:"password,omitempty"`

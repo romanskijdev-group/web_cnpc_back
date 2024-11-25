@@ -10,6 +10,7 @@ message UserAuthReqAccountReq {
     google.protobuf.StringValue Email   =1;
 	google.protobuf.StringValue TemporaryPassword   =2;
 	google.protobuf.Int64Value TelegramID       =3;
+	google.protobuf.Int64Value VKID       =4;
 	google.protobuf.StringValue EmailCode    =5;
 	google.protobuf.StringValue SystemID    =6;
 

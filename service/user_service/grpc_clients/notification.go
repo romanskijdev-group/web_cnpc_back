@@ -11,21 +11,23 @@ import (
 	"google.golang.org/grpc"
 )
 
-func InitClientUserAccountServiceProto(opts []grpc.DialOption, configObj *typescore.Config) protoobj.UserAccountServiceProtoClient {
+func InitClientNotificationServiceProto(opts []grpc.DialOption, configObj *typescore.Config) protoobj.NotificationServiceProtoClient {
 	var conn *grpc.ClientConn
 	var err error
-	list := fmt.Sprintf("%s:%d", configObj.Server.UserService.Internal, configObj.Server.UserService.Port)
+
+	list := fmt.Sprintf("%s:%d", configObj.Server.NotificationsService.Internal, configObj.Server.NotificationsService.Port)
+
 	// Попытка подключения с повторением
 	for {
 		conn, err = grpccore.CreateClientConnects(opts, list, false) // todo разобратся с чеком сервиса
 		if err != nil {
-			log.Printf("🔴 Failed to connect to UserAccountService server: %v. Retrying...", err)
+			log.Printf("🔴 Failed to connect to NotificationService server: %v. Retrying...", err)
 			time.Sleep(1 * time.Second) // Задержка перед следующей попыткой
 			continue
 		}
 		// Вывод сообщения о подключении только после успешного соединения
-		log.Println("🟢 UserAccountService server connected... ", list)
+		log.Println("🟢 NotificationService server connected... ", list)
 		break // Выход из цикла, если подключение успешно
 	}
-	return protoobj.NewUserAccountServiceProtoClient(conn)
+	return protoobj.NewNotificationServiceProtoClient(conn)
 }

@@ -9,7 +9,7 @@ import "messages/Empty.proto";
 import "messages/LogInInfoRes.proto";
 import "messages/UserAuthReqAccountReq.proto";
 
-service UserService {
+service UserAccountServiceProto {
   // вход пользователя в аккаунт
   rpc UserLoginAccount(UserAuthReqAccountReq) returns (LogInInfoRes) {}
 
@@ -17,7 +17,7 @@ service UserService {
   rpc GetUserProfile(UsersMsg) returns (UsersMsg) {}  //
 
   // получение профилей пользователей
-  rpc GetUsersInfoList(UsersMsg) returns (UsersMsgList) {}
+  rpc GetUsersInfoList(UsersMsgReq) returns (UsersMsgList) {}
 
   // обновление информаций о пользователе
   rpc UpdateUserProfile(UsersMsg) returns (UsersMsg) {}

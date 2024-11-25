@@ -69,11 +69,7 @@ func (m *ModuleDB) GetUsersListDB(ctx context.Context, paramsFiltering *typescor
 	fields := dbutils.GetStructFieldsDB(&typescore.UsersProviderControl{}, nil)
 
 	query := squirrel.StatementBuilder.PlaceholderFormat(squirrel.Dollar).
-		Select(fields...).From(TableName).Column(`(
-        SELECT subs.subscription_name
-        FROM UsersProviderControls_subscriptions subs
-        WHERE subs.UsersProviderControl_id = UsersProviderControls.system_id
-    ) AS current_subscription`)
+		Select(fields...).From(TableName)
 
 	query = dbutils.SetterLimitAndOffsetQuery(query, offset, limit)
 
