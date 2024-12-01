@@ -1,0 +1,7 @@
+# Auth
+
+[title_new_login]
+other="Success login"
+
+[body_new_login]
+other="You have been successfully logged in using <<service>>"

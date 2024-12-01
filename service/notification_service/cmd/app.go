@@ -3,6 +3,7 @@ package main
 import (
 	"cnpc_backend/core/config"
 	grpccore "cnpc_backend/core/grpc_core/grpc"
+	alertsdb "cnpc_backend/core/module/notification/user_alerts/db"
 	usersdb "cnpc_backend/core/module/user/users/db"
 	protoobj "cnpc_backend/core/proto"
 	internalservices "cnpc_backend/core/services/internal_services"
@@ -78,7 +79,7 @@ func initModules(config *typescore.Config, ipc *types.InternalProviderControl) *
 	ipc.Database = types.DatabaseModuleI{
 		//UserDevicePush: pushuserdevicesdb.NewUserDevicePushDB(configModules),
 		UsersActions: usersdb.NewUsersDB(configModules),
-		//SystemNotify:   alertusernotifydb.NewAlertNotifyDB(configModules),
+		UserAlerts:   alertsdb.NewUserAlertsDB(configModules),
 	}
 	ipc.Modules.Notification = notification.NewModuleNotification(ipc)
 	ipc.Modules.BundleI18n = i8nInit()
@@ -101,10 +102,6 @@ func initInternalProvider(config *typescore.Config) *types.InternalProviderContr
 		Name:     config.Storage.DBName,
 	})
 
-	//firebaseClient := externalservices.InitFirebaseService(&firebasepush.FirebaseConfig{
-	//	FcmServerToken: &config.Firebase.CredentialsServerToken,
-	//})
-
 	//storageModule := alicloudossapi.NewAliCloudOSSStorage(alicloudossapi.StorageConfigSt{
 	//	Key:      config.AliCloudOSSStorage.Key,
 	//	Secret:   config.AliCloudOSSStorage.Secret,
@@ -116,7 +113,6 @@ func initInternalProvider(config *typescore.Config) *types.InternalProviderContr
 		Config:       config,
 		DatabasePull: databasePg,
 		RedisClient:  redisClient,
-		//FirebaseClient: firebaseClient,
 		//Storage: storageModule,
 	}
 }

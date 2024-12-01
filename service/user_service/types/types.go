@@ -1,6 +1,7 @@
 package types
 
 import (
+	alertsdb "cnpc_backend/core/module/notification/user_alerts/db"
 	restauthcore "cnpc_backend/core/module/rest_auth"
 	usersdb "cnpc_backend/core/module/user/users/db"
 	protoobj "cnpc_backend/core/proto"
@@ -8,6 +9,7 @@ import (
 	redismodule "cnpc_backend/core/services/internal_services/redis"
 	"cnpc_backend/core/typescore"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 
 type Clients struct {
@@ -15,11 +17,13 @@ type Clients struct {
 }
 
 type Modules struct {
-	RestAuth *restauthcore.ModuleRestAuth
+	RestAuth   *restauthcore.ModuleRestAuth
+	BundleI18n *i18n.Bundle
 }
 
 type DatabaseModuleI struct {
 	UsersActions usersdb.UsersProviderControlsDBI
+	UserAlerts   alertsdb.UsersAlertsDBI
 	//ReferralBonus      referralbonusesdb.ReferralBonusesDBI
 	//UsersSubscriptions userssubsdb.UsersSubscriptionDBI
 }

@@ -1,6 +1,7 @@
 package types
 
 import (
+	alertsdb "cnpc_backend/core/module/notification/user_alerts/db"
 	usersdb "cnpc_backend/core/module/user/users/db"
 	alicloudossapi "cnpc_backend/core/services/external_services/alicloud_oss_api"
 	firebasepush "cnpc_backend/core/services/external_services/firebase_push"
@@ -21,7 +22,7 @@ type Modules struct {
 type DatabaseModuleI struct {
 	//UserDevicePush pushuserdevicesdb.UserDevicePushDBI
 	UsersActions usersdb.UsersProviderControlsDBI
-	//SystemNotify   alertusernotifydb.AlertNotifyDBI
+	UserAlerts   alertsdb.UsersAlertsDBI
 }
 
 type Clients struct {

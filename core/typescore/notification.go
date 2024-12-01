@@ -30,7 +30,7 @@ type ParamsSendMail struct {
 type NotifyCategory string
 
 const (
-	BearerChequeNotifyCategory NotifyCategory = "bearer_cheque" //  чеки
+	BearerChequeNotifyCategory NotifyCategory = "bearer_cheque" // чеки
 	ChatsMessageNotifyCategory NotifyCategory = "chats"         // Чаты
 	InfoNotifyCategory         NotifyCategory = "info"          // Информационное уведомление(от админа)
 

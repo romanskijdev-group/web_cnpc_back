@@ -16,6 +16,7 @@ func MigrateTables(db *gorm.DB) error {
 		&typescore.UsersProviderControl{}: "users",
 		&typescore.APIAccess{}:            "api_access",
 		&typescore.LoginActivities{}:      "login_activities",
+		&typescore.SystemAlerts{}:         "user_alerts",
 	}
 	for model, tableName := range modelsToMigrate {
 		if err := MigrateModel(db, model, tableName); err != nil {
@@ -62,5 +63,6 @@ func MigrateModel(db *gorm.DB, model interface{}, tableName string) error {
 
 func MigrateKeys(db *gorm.DB) error {
 	//db.Exec("ALTER TABLE users ADD CONSTRAINT fk_language_code FOREIGN KEY (language) REFERENCES languages(code_639_1) ON DELETE RESTRICT ON UPDATE RESTRICT")
+	db.Exec("ALTER TABLE user_alerts ADD CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users(system_id) ON DELETE RESTRICT ON UPDATE RESTRICT")
 	return nil
 }

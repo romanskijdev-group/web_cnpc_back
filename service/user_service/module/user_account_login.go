@@ -53,6 +53,7 @@ func (s *UserAccountServiceProto) authTokenLogin(userAuthReqAccountReq *typescor
 	if userObj == nil || userObj.SystemID == nil {
 		return findObjUer, true, nil
 	}
+
 	return userObj, false, nil
 }
 
