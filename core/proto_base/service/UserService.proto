@@ -8,6 +8,7 @@ import "messages/UpdateUserAvatarURLReq.proto";
 import "messages/Empty.proto";
 import "messages/LogInInfoRes.proto";
 import "messages/UserAuthReqAccountReq.proto";
+import "messages/UserSystemAlerts.proto";
 
 service UserAccountServiceProto {
   // вход пользователя в аккаунт
@@ -33,4 +34,10 @@ service UserAccountServiceProto {
 
   // обновление аватара пользователя
   rpc UpdateUserAvatarURL(UpdateUserAvatarURLReq) returns (Empty) {}
+
+  // получение уведомлений пользователя
+  rpc GetUserAlerts(UserAlertMsg) returns (UserAlertMsgList) {}
+
+  // изменение уведомлений
+  rpc UpdateUserAlerts(UserAlertMsg) returns (UserAlertMsgList) {}
 }

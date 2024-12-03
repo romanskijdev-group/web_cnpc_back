@@ -38,6 +38,10 @@ type UserAccountServiceProtoClient interface {
 	CheckCodeBotAuthUserValid(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error)
 	// обновление аватара пользователя
 	UpdateUserAvatarURL(ctx context.Context, in *UpdateUserAvatarURLReq, opts ...grpc.CallOption) (*Empty, error)
+	// получение уведомлений пользователя
+	GetUserAlerts(ctx context.Context, in *UserAlertMsg, opts ...grpc.CallOption) (*UserAlertMsgList, error)
+	// изменение уведомлений
+	UpdateUserAlerts(ctx context.Context, in *UserAlertMsg, opts ...grpc.CallOption) (*UserAlertMsgList, error)
 }
 
 type userAccountServiceProtoClient struct {
@@ -120,6 +124,24 @@ func (c *userAccountServiceProtoClient) UpdateUserAvatarURL(ctx context.Context,
 	return out, nil
 }
 
+func (c *userAccountServiceProtoClient) GetUserAlerts(ctx context.Context, in *UserAlertMsg, opts ...grpc.CallOption) (*UserAlertMsgList, error) {
+	out := new(UserAlertMsgList)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/GetUserAlerts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userAccountServiceProtoClient) UpdateUserAlerts(ctx context.Context, in *UserAlertMsg, opts ...grpc.CallOption) (*UserAlertMsgList, error) {
+	out := new(UserAlertMsgList)
+	err := c.cc.Invoke(ctx, "/msg.UserAccountServiceProto/UpdateUserAlerts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserAccountServiceProtoServer is the server API for UserAccountServiceProto service.
 // All implementations must embed UnimplementedUserAccountServiceProtoServer
 // for forward compatibility
@@ -140,6 +162,10 @@ type UserAccountServiceProtoServer interface {
 	CheckCodeBotAuthUserValid(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error)
 	// обновление аватара пользователя
 	UpdateUserAvatarURL(context.Context, *UpdateUserAvatarURLReq) (*Empty, error)
+	// получение уведомлений пользователя
+	GetUserAlerts(context.Context, *UserAlertMsg) (*UserAlertMsgList, error)
+	// изменение уведомлений
+	UpdateUserAlerts(context.Context, *UserAlertMsg) (*UserAlertMsgList, error)
 	mustEmbedUnimplementedUserAccountServiceProtoServer()
 }
 
@@ -170,6 +196,12 @@ func (UnimplementedUserAccountServiceProtoServer) CheckCodeBotAuthUserValid(cont
 }
 func (UnimplementedUserAccountServiceProtoServer) UpdateUserAvatarURL(context.Context, *UpdateUserAvatarURLReq) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserAvatarURL not implemented")
+}
+func (UnimplementedUserAccountServiceProtoServer) GetUserAlerts(context.Context, *UserAlertMsg) (*UserAlertMsgList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserAlerts not implemented")
+}
+func (UnimplementedUserAccountServiceProtoServer) UpdateUserAlerts(context.Context, *UserAlertMsg) (*UserAlertMsgList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserAlerts not implemented")
 }
 func (UnimplementedUserAccountServiceProtoServer) mustEmbedUnimplementedUserAccountServiceProtoServer() {
 }
@@ -329,6 +361,42 @@ func _UserAccountServiceProto_UpdateUserAvatarURL_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserAccountServiceProto_GetUserAlerts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserAlertMsg)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserAccountServiceProtoServer).GetUserAlerts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.UserAccountServiceProto/GetUserAlerts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserAccountServiceProtoServer).GetUserAlerts(ctx, req.(*UserAlertMsg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserAccountServiceProto_UpdateUserAlerts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserAlertMsg)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserAccountServiceProtoServer).UpdateUserAlerts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.UserAccountServiceProto/UpdateUserAlerts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserAccountServiceProtoServer).UpdateUserAlerts(ctx, req.(*UserAlertMsg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserAccountServiceProto_ServiceDesc is the grpc.ServiceDesc for UserAccountServiceProto service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -367,6 +435,14 @@ var UserAccountServiceProto_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateUserAvatarURL",
 			Handler:    _UserAccountServiceProto_UpdateUserAvatarURL_Handler,
+		},
+		{
+			MethodName: "GetUserAlerts",
+			Handler:    _UserAccountServiceProto_GetUserAlerts_Handler,
+		},
+		{
+			MethodName: "UpdateUserAlerts",
+			Handler:    _UserAccountServiceProto_UpdateUserAlerts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

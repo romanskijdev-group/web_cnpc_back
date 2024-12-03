@@ -7,9 +7,7 @@ import (
 	"context"
 	"errors"
 	"log"
-	"strings"
 	"time"
-	"userservice/locale"
 )
 
 // обрабатывает обнаруженного пользователя и возвращает информацию о входе
@@ -144,59 +142,4 @@ func (s *UserAccountServiceProto) vkLogin(req *typescore.UserAuthReqAccountReq) 
 		log.Println("🔴 error vkLogin: sendLoginAlertNotification: ", err)
 	}
 	return userObj, false, nil
-}
-
-func (s *UserAccountServiceProto) sendLoginAlertNotification(userInfo *typescore.UsersProviderControl, authType *typescore.TypeAuth) error {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
-	defer cancel()
-
-	println("sendLoginAlertNotification")
-
-	if authType == nil {
-		return errors.New("unexpected_auth_type")
-	}
-
-	replaceMapText := map[string]string{
-		"<<service>>": string(*authType),
-	}
-
-	println("replaceMapText")
-
-	translateTitle, err := locale.LocaleConvert(userInfo.Language, "title_new_login", s.ipc.Modules.BundleI18n)
-	if err != nil {
-		log.Println("🔴 error LocaleConvert: ", err)
-		translateTitle = ""
-	}
-	translateBody, err := locale.LocaleConvert(userInfo.Language, "body_new_login", s.ipc.Modules.BundleI18n)
-	if err != nil {
-		log.Println("🔴 error LocaleConvert: ", err)
-		translateBody = ""
-	}
-
-	println("success translate")
-
-	bodyText := translateBody
-	for key, value := range replaceMapText {
-		bodyText = strings.ReplaceAll(bodyText, key, value)
-	}
-
-	println("ranging")
-
-	notifyType := typescore.InfoNotifyCategory
-
-	userAlert := &typescore.UserSystemAlerts{
-		UserID:     userInfo.SystemID,
-		NotifyType: &notifyType,
-		Title:      &translateTitle,
-		Message:    &bodyText,
-	}
-
-	_, errW := s.ipc.Database.UserAlerts.CreateUserAlertDB(ctx, userAlert)
-	if errW != nil {
-		return errW.Err
-	}
-
-	println("created")
-
-	return nil
 }
