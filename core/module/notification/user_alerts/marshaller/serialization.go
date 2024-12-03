@@ -16,6 +16,7 @@ func UserAlertSerialization(obj *typescore.UserSystemAlerts) *protoobj.UserAlert
 		SystemID:   s.StringToWrapperStringValue(obj.SystemID),
 		SerialID:   s.Uint64ToWrapperUInt64Value(obj.SerialID),
 		CreatedAt:  s.TimePtrToTimestampPB(obj.CreatedAt),
+		UserID:     s.StringToWrapperStringValue(obj.UserID),
 		Reading:    s.BoolToWrapperBoolValue(obj.Reading),
 		NotifyType: s.StringToWrapperStringValue((*string)(obj.NotifyType)),
 		Title:      s.StringToWrapperStringValue(obj.Title),

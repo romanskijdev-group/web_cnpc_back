@@ -11,6 +11,7 @@ import (
 	"cnpc_backend/core/typescore"
 	grpcclients "cnpc_backend/rest_user_service/grpc_clients"
 	authuser "cnpc_backend/rest_user_service/handler/auth"
+	"cnpc_backend/rest_user_service/handler/notifications"
 	userprofile "cnpc_backend/rest_user_service/handler/profile"
 	usershandler "cnpc_backend/rest_user_service/handler/users"
 	"cnpc_backend/rest_user_service/types"
@@ -103,6 +104,9 @@ func registerRouters(ipc *types.InternalProviderControl, router *chi.Mux) {
 
 	users := usershandler.NewHandlerUsers(ipc)
 	users.RegisterUsers(router)
+
+	notification := notifications.NewHandlerNotifications(ipc)
+	notification.RegisterNotifications(router)
 }
 
 // запуск сервера REST API

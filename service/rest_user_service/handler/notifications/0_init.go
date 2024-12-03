@@ -10,7 +10,7 @@ type HandlerNotifications struct {
 	UserAlerts notificationsinterface.UserAlertsI
 }
 
-func NewHandlerAccount(ipc *types.InternalProviderControl) *HandlerNotifications {
+func NewHandlerNotifications(ipc *types.InternalProviderControl) *HandlerNotifications {
 	return &HandlerNotifications{
 		ipc:        ipc,
 		UserAlerts: newHandlerAccount(ipc, "UserAlerts").(notificationsinterface.UserAlertsI),

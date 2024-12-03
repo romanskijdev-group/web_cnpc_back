@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func (h *HandlerNotifications) RegisterUsers(router *chi.Mux) {
+func (h *HandlerNotifications) RegisterNotifications(router *chi.Mux) {
 	routes := []types.RouteParams{
 		{
 			Method:      http.MethodGet,
