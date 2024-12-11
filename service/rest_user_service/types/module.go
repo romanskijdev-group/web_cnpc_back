@@ -1,6 +1,7 @@
 package types
 
 import (
+	ipdetectorinterface "cnpc_backend/core/common/ip_detector/interface"
 	restauthcore "cnpc_backend/core/module/rest_auth"
 	usersdb "cnpc_backend/core/module/user/users/db"
 	protoobj "cnpc_backend/core/proto"
@@ -16,7 +17,8 @@ type Clients struct {
 }
 
 type Modules struct {
-	RestAuth *restauthcore.ModuleRestAuth
+	RestAuth         *restauthcore.ModuleRestAuth
+	IPDetectorModule ipdetectorinterface.IPdetectorI
 }
 
 type DatabaseI struct {

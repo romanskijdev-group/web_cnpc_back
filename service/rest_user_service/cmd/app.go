@@ -1,6 +1,7 @@
 package main
 
 import (
+	ipdetector "cnpc_backend/core/common/ip_detector"
 	"cnpc_backend/core/config"
 	restauthcore "cnpc_backend/core/module/rest_auth"
 	usersdb "cnpc_backend/core/module/user/users/db"
@@ -11,6 +12,7 @@ import (
 	"cnpc_backend/core/typescore"
 	grpcclients "cnpc_backend/rest_user_service/grpc_clients"
 	authuser "cnpc_backend/rest_user_service/handler/auth"
+	"cnpc_backend/rest_user_service/handler/notifications"
 	userprofile "cnpc_backend/rest_user_service/handler/profile"
 	usershandler "cnpc_backend/rest_user_service/handler/users"
 	"cnpc_backend/rest_user_service/types"
@@ -52,7 +54,8 @@ func initModules(configObj *typescore.Config, ipc *types.InternalProviderControl
 	}
 
 	ipc.Modules = types.Modules{
-		RestAuth: restauthcore.InitNewModule(configModules),
+		RestAuth:         restauthcore.InitNewModule(configModules),
+		IPDetectorModule: ipdetector.InitDetectorIP(configModules),
 	}
 
 	ipc.Database = types.DatabaseI{
@@ -103,6 +106,9 @@ func registerRouters(ipc *types.InternalProviderControl, router *chi.Mux) {
 
 	users := usershandler.NewHandlerUsers(ipc)
 	users.RegisterUsers(router)
+
+	notification := notifications.NewHandlerNotifications(ipc)
+	notification.RegisterNotifications(router)
 }
 
 // запуск сервера REST API

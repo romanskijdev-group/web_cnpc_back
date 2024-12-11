@@ -1,0 +1,23 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+message UserAlertMsg {
+  google.protobuf.StringValue SystemID   =1;
+  google.protobuf.UInt64Value SerialID   =2;
+  google.protobuf.StringValue UserID       =3;
+  google.protobuf.BoolValue Reading       =4;
+  google.protobuf.StringValue NotifyType    =5;
+  google.protobuf.StringValue Title    =7;
+  google.protobuf.StringValue Message   =8;
+  google.protobuf.StringValue Link   =9;
+  google.protobuf.UInt64Value DeepLinkID   =10;
+  google.protobuf.Timestamp created_at = 11;
+}
+
+message UserAlertMsgList {
+  repeated UserAlertMsg usersAlerts = 1;
+}

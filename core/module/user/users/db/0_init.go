@@ -34,4 +34,5 @@ type UsersProviderControlsDBI interface {
 	GetUsersCountDB(ctx context.Context, paramsFiltering *typescore.UsersProviderControl, likeFields map[string]string) (uint64, *typescore.WEvent)
 	GetUsersStatisticsByDateDB(ctx context.Context, paramsFiltering *typescore.TimePeriod, statType *typescore.UserStatisticsType) ([]*typescore.CountByDateStatisticsResponse, *typescore.WEvent)
 	UpdateUserBalanceDB(tx pgx.Tx, ctx context.Context, obj *typescore.UsersProviderControl, amount *decimal.Decimal) (pgx.Tx, error)
+	UpdateUserAvatarURLDB(ctx context.Context, userSystemID *string, avatarURL string) *typescore.WEvent
 }

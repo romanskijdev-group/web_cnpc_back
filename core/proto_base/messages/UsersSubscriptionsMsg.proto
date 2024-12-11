@@ -1,0 +1,17 @@
+syntax = "proto3";
+package msg;
+option go_package = "./proto;protoobj";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+message UsersSubscriptionsMsg {
+  google.protobuf.UInt64Value serial_id = 1;
+  google.protobuf.StringValue user_id = 2;
+  google.protobuf.StringValue subscription_name = 3;
+  google.protobuf.Int32Value compatibilities_balance = 4;
+  google.protobuf.Int32Value personal_horoscope_count = 5;
+  google.protobuf.Timestamp start_date = 7;
+  google.protobuf.Timestamp expired_in = 8;
+  google.protobuf.BoolValue is_renewal = 9;
+
+}

@@ -1,6 +1,8 @@
 package userssubsdb
 
 import (
+	"cnpc_backend/core/typescore"
+	dbutils "cnpc_backend/core/utilscore/db"
 	"context"
 	"errors"
 	"fmt"
@@ -8,22 +10,20 @@ import (
 	"log"
 	"reflect"
 	"strings"
-	"zod_backend_dev/core/models"
-	dbutils "zod_backend_dev/core/utils/db"
 )
 
 // GetUserSubscriptionDB Получение активной подписки пользователя
-func (m *ModuleDB) GetUserSubscriptionDB(ctx context.Context, paramsFiltering *models.UsersSubscriptions) (*models.UsersSubscriptions, *models.WEvent) {
+func (m *ModuleDB) GetUserSubscriptionDB(ctx context.Context, paramsFiltering *typescore.UsersSubscriptions) (*typescore.UsersSubscriptions, *typescore.WEvent) {
 	//logrus.Info("🚀 GetUserSubscriptionDB")
 
-	fields := dbutils.GetStructFieldsDB(&models.UsersSubscriptions{}, nil)
+	fields := dbutils.GetStructFieldsDB(&typescore.UsersSubscriptions{}, nil)
 
 	query := squirrel.StatementBuilder.PlaceholderFormat(squirrel.Dollar).
 		Select(fields...).From(TableName).Limit(1)
 
 	sql, args, err := dbutils.AddNonNullFieldsToQueryWhere(query, paramsFiltering, map[string]string{}, nil).ToSql()
 	if err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
@@ -32,7 +32,7 @@ func (m *ModuleDB) GetUserSubscriptionDB(ctx context.Context, paramsFiltering *m
 	// Получаем соединение из пула
 	conn, err := m.DatabasePull.Acquire(ctx)
 	if err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  fmt.Errorf("failed_to_acquire_connection: %v", err),
 			Text: "failed_to_acquire_connection",
 		}
@@ -40,14 +40,14 @@ func (m *ModuleDB) GetUserSubscriptionDB(ctx context.Context, paramsFiltering *m
 	defer conn.Release() // Освобождаем соединение после использования
 	rows, err := conn.Query(ctx, sql, args...)
 	if err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
 	}
 	defer rows.Close()
 
-	objItem := &models.UsersSubscriptions{}
+	objItem := &typescore.UsersSubscriptions{}
 	for rows.Next() {
 		errW := dbutils.ScanRowsToStructRows(rows, objItem)
 		if errW != nil {
@@ -60,10 +60,10 @@ func (m *ModuleDB) GetUserSubscriptionDB(ctx context.Context, paramsFiltering *m
 }
 
 // GetUsersSubscriptionsListDB Получение подписок пользователей
-func (m *ModuleDB) GetUsersSubscriptionsListDB(ctx context.Context, paramsFiltering *models.UsersSubscriptions, likeFields map[string]string, offset *uint64, limit *uint64) ([]*models.UsersSubscriptions, *models.WEvent) {
+func (m *ModuleDB) GetUsersSubscriptionsListDB(ctx context.Context, paramsFiltering *typescore.UsersSubscriptions, likeFields map[string]string, offset *uint64, limit *uint64) ([]*typescore.UsersSubscriptions, *typescore.WEvent) {
 	//logrus.Info("🚀 GetUsersSubscriptionsListDB")
 
-	fields := dbutils.GetStructFieldsDB(&models.UsersSubscriptions{}, nil)
+	fields := dbutils.GetStructFieldsDB(&typescore.UsersSubscriptions{}, nil)
 
 	query := squirrel.StatementBuilder.PlaceholderFormat(squirrel.Dollar).
 		Select(fields...).From(TableName)
@@ -72,7 +72,7 @@ func (m *ModuleDB) GetUsersSubscriptionsListDB(ctx context.Context, paramsFilter
 
 	sql, args, err := dbutils.AddNonNullFieldsToQueryWhere(query, paramsFiltering, likeFields, nil).ToSql()
 	if err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
@@ -80,7 +80,7 @@ func (m *ModuleDB) GetUsersSubscriptionsListDB(ctx context.Context, paramsFilter
 	// Получаем соединение из пула
 	conn, err := m.DatabasePull.Acquire(ctx)
 	if err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  fmt.Errorf("failed_to_acquire_connection: %v", err),
 			Text: "db_system_error",
 		}
@@ -88,16 +88,16 @@ func (m *ModuleDB) GetUsersSubscriptionsListDB(ctx context.Context, paramsFilter
 	defer conn.Release() // Освобождаем соединение после использования
 	rows, err := conn.Query(ctx, sql, args...)
 	if err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
 	}
 	defer rows.Close()
 
-	var users []*models.UsersSubscriptions
+	var users []*typescore.UsersSubscriptions
 	for rows.Next() {
-		user := &models.UsersSubscriptions{}
+		user := &typescore.UsersSubscriptions{}
 		errW := dbutils.ScanRowsToStructRows(rows, user)
 		if errW != nil {
 			continue
@@ -106,7 +106,7 @@ func (m *ModuleDB) GetUsersSubscriptionsListDB(ctx context.Context, paramsFilter
 	}
 
 	if err = rows.Err(); err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
@@ -116,12 +116,12 @@ func (m *ModuleDB) GetUsersSubscriptionsListDB(ctx context.Context, paramsFilter
 }
 
 // CreateUserSubscriptionDB Создает новую запись о подписках
-func (m *ModuleDB) CreateUserSubscriptionDB(ctx context.Context, userObj *models.UsersSubscriptions) (*models.UsersSubscriptions, *models.WEvent) {
+func (m *ModuleDB) CreateUserSubscriptionDB(ctx context.Context, userObj *typescore.UsersSubscriptions) (*typescore.UsersSubscriptions, *typescore.WEvent) {
 	//logrus.Info("🚀 CreateUserDB")
 
 	// Проверяем, что userW не является nil
 	if userObj == nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  errors.New("user is required"),
 			Text: "db_system_error",
 		}
@@ -140,7 +140,7 @@ func (m *ModuleDB) CreateUserSubscriptionDB(ctx context.Context, userObj *models
 	// Получаем соединение из пула
 	conn, err := m.DatabasePull.Acquire(ctx)
 	if err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  fmt.Errorf("failed_to_acquire_connection: %v", err),
 			Text: "failed_to_acquire_connection",
 		}
@@ -157,11 +157,11 @@ func (m *ModuleDB) CreateUserSubscriptionDB(ctx context.Context, userObj *models
 }
 
 // UpdateUserSubscriptionDB Обновление тарифов пользователя
-func (m *ModuleDB) UpdateUserSubscriptionDB(ctx context.Context, paramsUpdate *models.UsersSubscriptions) (*models.UsersSubscriptions, *models.WEvent) {
+func (m *ModuleDB) UpdateUserSubscriptionDB(ctx context.Context, paramsUpdate *typescore.UsersSubscriptions) (*typescore.UsersSubscriptions, *typescore.WEvent) {
 	//logrus.Info("🚀 UpdateUserSubscriptionDB")
 
 	if paramsUpdate.UserID == nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  errors.New("user_id is required for update"),
 			Text: "db_system_error",
 		}
@@ -199,7 +199,7 @@ func (m *ModuleDB) UpdateUserSubscriptionDB(ctx context.Context, paramsUpdate *m
 	// Генерируем SQL и аргументы
 	sql, args, err := query.ToSql()
 	if err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
@@ -208,7 +208,7 @@ func (m *ModuleDB) UpdateUserSubscriptionDB(ctx context.Context, paramsUpdate *m
 	// Получаем соединение из пула
 	conn, err := m.DatabasePull.Acquire(ctx)
 	if err != nil {
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  fmt.Errorf("failed_to_acquire_connection: %v", err),
 			Text: "failed_to_acquire_connection",
 		}
@@ -218,19 +218,19 @@ func (m *ModuleDB) UpdateUserSubscriptionDB(ctx context.Context, paramsUpdate *m
 	_, err = conn.Exec(ctx, sql, args...)
 	if err != nil {
 		if strings.Contains(err.Error(), "violates foreign key constraint") {
-			return nil, &models.WEvent{
+			return nil, &typescore.WEvent{
 				Err:  err,
 				Text: "invalid_glossary_field_code",
 			}
 		}
-		return nil, &models.WEvent{
+		return nil, &typescore.WEvent{
 			Err:  err,
 			Text: "db_system_error",
 		}
 	}
 
-	updateUserInfo := &models.UsersSubscriptions{}
-	getUsersUp, errW := m.GetUsersSubscriptionsListDB(ctx, &models.UsersSubscriptions{
+	updateUserInfo := &typescore.UsersSubscriptions{}
+	getUsersUp, errW := m.GetUsersSubscriptionsListDB(ctx, &typescore.UsersSubscriptions{
 		UserID: paramsUpdate.UserID}, map[string]string{}, nil, nil)
 	if errW != nil {
 		return nil, errW
@@ -243,13 +243,13 @@ func (m *ModuleDB) UpdateUserSubscriptionDB(ctx context.Context, paramsUpdate *m
 }
 
 // GetUsersLimitsCountDB Получение количества пользователей из базы данных(с учетом фильтров)
-func (m *ModuleDB) GetUsersLimitsCountDB(ctx context.Context, paramsFiltering *models.UsersSubscriptions, likeFields map[string]string) (uint64, *models.WEvent) {
+func (m *ModuleDB) GetUsersLimitsCountDB(ctx context.Context, paramsFiltering *typescore.UsersSubscriptions, likeFields map[string]string) (uint64, *typescore.WEvent) {
 	query := squirrel.StatementBuilder.PlaceholderFormat(squirrel.Dollar).
 		Select("COUNT(*)").From(TableName)
 
 	sql, args, err := dbutils.AddNonNullFieldsToQueryWhere(query, paramsFiltering, likeFields, nil).ToSql()
 	if err != nil {
-		return 0, &models.WEvent{
+		return 0, &typescore.WEvent{
 			Err:  fmt.Errorf("failed_to_build_sql: %v", err),
 			Text: "failed_to_build_sql",
 		}
@@ -257,7 +257,7 @@ func (m *ModuleDB) GetUsersLimitsCountDB(ctx context.Context, paramsFiltering *m
 	// Получаем соединение из пула
 	conn, err := m.DatabasePull.Acquire(ctx)
 	if err != nil {
-		return 0, &models.WEvent{
+		return 0, &typescore.WEvent{
 			Err:  fmt.Errorf("failed_to_acquire_connection: %v", err),
 			Text: "failed_to_acquire_connection",
 		}
@@ -267,7 +267,7 @@ func (m *ModuleDB) GetUsersLimitsCountDB(ctx context.Context, paramsFiltering *m
 	var totalCount uint64
 	err = conn.QueryRow(ctx, sql, args...).Scan(&totalCount)
 	if err != nil {
-		return 0, &models.WEvent{
+		return 0, &typescore.WEvent{
 			Err:  fmt.Errorf("failed_to_execute_count_query: %v", err),
 			Text: "failed_to_execute_count_query",
 		}

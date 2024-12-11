@@ -99,6 +99,6 @@ func (m *AWSS3CloudStorageImpl) UploadPublicFile(reader io.Reader, path, fileNam
 	}
 
 	// Формируем публичный URL файла
-	publicURL := fmt.Sprintf("%s%s%s%s/%s", "https://", m.StorageConfig.Bucket, ".", m.StorageConfig.Endpoint, path)
+	publicURL := fmt.Sprintf("%s%s%s%s%s", "https://", m.StorageConfig.Endpoint, "/", m.StorageConfig.Bucket, path)
 	return publicURL, nil
 }

@@ -1,11 +1,11 @@
 package ipdetector
 
 import (
+	"cnpc_backend/core/typescore"
 	_ "embed"
 	"net"
 	"os"
 	"strings"
-	"sveves-team/zion-crypto-bank/core/typescore"
 	"sync"
 
 	"github.com/oschwald/geoip2-golang"

@@ -3,6 +3,7 @@ package main
 import (
 	"cnpc_backend/core/config"
 	grpccore "cnpc_backend/core/grpc_core/grpc"
+	alertsdb "cnpc_backend/core/module/notification/user_alerts/db"
 	restauthcore "cnpc_backend/core/module/rest_auth"
 	usersdb "cnpc_backend/core/module/user/users/db"
 	protoobj "cnpc_backend/core/proto"
@@ -13,6 +14,9 @@ import (
 	"cnpc_backend/core/typescore"
 	"errors"
 	"fmt"
+	"github.com/BurntSushi/toml"
+	"github.com/nicksnyder/go-i18n/v2/i18n"
+	"golang.org/x/text/language"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"log"
@@ -51,6 +55,14 @@ func main() {
 	startGRPC(ipc, serverStartURI)
 }
 
+func i8nInit() *i18n.Bundle {
+	bundle := i18n.NewBundle(language.English)
+	bundle.RegisterUnmarshalFunc("toml", toml.Unmarshal)
+	bundle.MustLoadMessageFile("./locale/locale.en.toml")
+	bundle.MustLoadMessageFile("./locale/locale.ru.toml")
+	return bundle
+}
+
 func startGRPC(ipc *types.InternalProviderControl, addressService string) {
 	server, err := grpccore.CreateServerGRPC(nil, nil)
 	if err != nil {
@@ -82,12 +94,14 @@ func initModules(config *typescore.Config, ipc *types.InternalProviderControl) *
 
 	ipc.Database = types.DatabaseModuleI{
 		UsersActions: usersdb.NewUsersDB(configModules),
+		UserAlerts:   alertsdb.NewUserAlertsDB(configModules),
 		//ReferralBonus:      referralbonusesdb.NewReferralBonusesDB(configModules),
 		//UsersSubscriptions: userssubsdb.NewUsersSubscriptionDB(configModules),
 	}
 	ipc.Modules = types.Modules{
 		RestAuth: restauthcore.InitNewModule(configModules),
 	}
+	ipc.Modules.BundleI18n = i8nInit()
 	return ipc
 }
 

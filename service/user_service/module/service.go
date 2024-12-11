@@ -1,6 +1,7 @@
 package module
 
 import (
+	marshalleruseralerts "cnpc_backend/core/module/notification/user_alerts/marshaller"
 	marshallerusers "cnpc_backend/core/module/user/users/marshaller"
 	protoobj "cnpc_backend/core/proto"
 	"context"
@@ -97,6 +98,47 @@ func (s *UserAccountServiceProto) DeleteUser(ctx context.Context, obj *protoobj.
 	paramsObj := marshallerusers.UsersProviderControlDeserialization(obj)
 
 	errW := s.ipc.Database.UsersActions.DeleteUserDB(ctx, paramsObj)
+	if errW != nil {
+		return nil, errW.Err
+	}
+	return nil, nil
+}
+
+// получение уведомлений
+func (s *UserAccountServiceProto) GetUserAlerts(ctx context.Context, obj *protoobj.UserAlertMsg) (*protoobj.UserAlertMsgList, error) {
+	// logrus.Info("🚀 GetUserAlerts")
+	paramsObj := marshalleruseralerts.UsersAlertsDeserialization(obj)
+
+	alerts, errW := s.ipc.Database.UserAlerts.GetUserAlertsListDB(ctx, paramsObj, map[string]string{}, nil, nil)
+	if errW != nil {
+		return nil, errW.Err
+	}
+	return marshalleruseralerts.UserAlertMsgListSerialization(alerts), nil
+}
+
+// изменение уведомлений
+func (s *UserAccountServiceProto) UpdateUserAlerts(ctx context.Context, obj *protoobj.UserAlertMsg) (*protoobj.UserAlertMsgList, error) {
+	// logrus.Info("🚀 UpdateUserAlerts")
+	paramsObj := marshalleruseralerts.UsersAlertsDeserialization(obj)
+
+	alerts, errW := s.ipc.Database.UserAlerts.UpdateUserAlertDB(ctx, paramsObj)
+	if errW != nil {
+		return nil, errW.Err
+	}
+	return marshalleruseralerts.UserAlertMsgListSerialization(alerts), nil
+}
+
+// обновление аватара пользователя
+func (s *UserAccountServiceProto) UpdateUserAvatarURL(ctx context.Context, obj *protoobj.UpdateUserAvatarURLReq) (*protoobj.Empty, error) {
+	// logrus.Info("🚀 UpdateUserAvatarURL")
+	userSystemID, avatarURL := marshallerusers.UpdateUserAvatarURLReqDeserialization(obj)
+
+	if avatarURL == nil {
+		empty := ""
+		avatarURL = &empty
+	}
+
+	errW := s.ipc.Database.UsersActions.UpdateUserAvatarURLDB(ctx, userSystemID, *avatarURL)
 	if errW != nil {
 		return nil, errW.Err
 	}

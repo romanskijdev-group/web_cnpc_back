@@ -1,6 +1,9 @@
 package typescore
 
-import "time"
+import (
+	"net"
+	"time"
+)
 
 // Структура для доступа к API
 type APIAccess struct {
@@ -11,4 +14,10 @@ type APIAccess struct {
 	IsActive     *bool      `gorm:"default:true;column:is_active" json:"is_active" db:"is_active"`                             // Статус доступа к API
 	Desctription *string    `gorm:"type:text;column:description" json:"description" db:"description"`                          // Описание доступа к API
 	TypeAccess   *string    `gorm:"type:varchar(255);column:type_access;default:'user'" json:"type_access" db:"type_access"`   // Тип доступа к API
+}
+
+// Черный список ip
+type BlackListIP struct {
+	IP        *net.IP    `gorm:"type:inet;primaryKey;column:ip" json:"ip" db:"ip"`                              // Ip адрес в черном списке
+	CreatedAt *time.Time `gorm:"default:CURRENT_TIMESTAMP;column:created_at" json:"created_at" db:"created_at"` // Дата и время создания записи
 }

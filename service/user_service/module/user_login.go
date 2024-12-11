@@ -1,7 +1,6 @@
 package module
 
 import (
-	marshallernotification "cnpc_backend/core/module/notification/marshaller"
 	protoobj "cnpc_backend/core/proto"
 	"cnpc_backend/core/typescore"
 	"context"
@@ -66,19 +65,9 @@ func (s *UserAccountServiceProto) userAuthNewInfoCombat(userObj *typescore.Users
 	userObj.LastLogin = &lastLogin
 
 	if updateIpLogin {
-		categoryNotifyNewDevice := typescore.DeviceNewNotifyCategory
-		// Текст уведомления о новом устройстве
-		textNotify := "New device login: " + *newUserIp
-		// Сериализуем параметры уведомления
-		notifyParamsPr := marshallernotification.NotifyParamsSerialization(&typescore.NotifyParams{
-			Text:          &textNotify,
-			SystemUserIDs: []*string{userObj.SystemID},
-			Category:      &categoryNotifyNewDevice,
-		})
-		// Отправляем уведомление пользователю о новом IP-адресе
-		_, err := s.ipc.Clients.NotificationServiceProto.NotifyUser(ctx, notifyParamsPr)
+		err := s.sendDeviceAlertNotification(userObj, newUserIp)
 		if err != nil {
-			log.Println("🔴 error UserLoginAccount: NotifyUser: ", err)
+			log.Println("🔴 error userAuthNewInfoCombat: sendDeviceAlertNotification: ", err)
 		}
 	}
 
@@ -112,10 +101,16 @@ func (s *UserAccountServiceProto) emailLogin(req *typescore.UserAuthReqAccountRe
 	if userObj == nil || userObj.SystemID == nil {
 		return findObjUer, true, nil
 	}
+
+	err = s.sendLoginAlertNotification(userObj, req.AuthType)
+	if err != nil {
+		log.Println("🔴 error vkLogin: sendLoginAlertNotification: ", err)
+	}
+
 	return userObj, false, nil
 }
 
-// обрабатывает вход пользователя по email
+// обрабатывает вход пользователя по vk
 func (s *UserAccountServiceProto) vkLogin(req *typescore.UserAuthReqAccountReq) (*typescore.UsersProviderControl, bool, error) {
 	// Если тип входа - Email
 	if req.VKID == nil {
@@ -129,6 +124,11 @@ func (s *UserAccountServiceProto) vkLogin(req *typescore.UserAuthReqAccountReq) 
 	userObj := s.findUserInfo(findObjUer)
 	if userObj == nil || userObj.SystemID == nil {
 		return findObjUer, true, nil
+	}
+
+	err := s.sendLoginAlertNotification(userObj, req.AuthType)
+	if err != nil {
+		log.Println("🔴 error vkLogin: sendLoginAlertNotification: ", err)
 	}
 	return userObj, false, nil
 }

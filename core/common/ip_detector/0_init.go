@@ -2,9 +2,9 @@ package ipdetector
 
 import (
 	ipdetectorinterface "cnpc_backend/core/common/ip_detector/interface"
-	"sveves-team/zion-crypto-bank/core/module/system"
-	interfaceblacklistip "sveves-team/zion-crypto-bank/core/module/system/black_list_ip/logic/interface"
-	"sveves-team/zion-crypto-bank/core/typescore"
+	"cnpc_backend/core/module/system"
+	interfaceblacklistip "cnpc_backend/core/module/system/black_list_ip/logic/interface"
+	"cnpc_backend/core/typescore"
 )
 
 type IPdetectorM struct {

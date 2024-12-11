@@ -336,6 +336,11 @@ func (m *ModuleDB) UpdateUserLastLoginInfoDB(ctx context.Context, UsersProviderC
 		query = query.Set("last_login", UsersProviderControlObj.LastLogin)
 	}
 
+	if UsersProviderControlObj.LastIP != nil {
+		setUpdate = true
+		query = query.Set("last_ip", UsersProviderControlObj.LastIP)
+	}
+
 	if !setUpdate {
 		return &typescore.WEvent{
 			Err:  errors.New("no fields to update"),
@@ -569,4 +574,55 @@ func (m *ModuleDB) UpdateUserBalanceDB(tx pgx.Tx, ctx context.Context, obj *type
 	}
 
 	return tx, nil
+}
+
+// Обновляет URL аватара пользователя
+func (m *ModuleDB) UpdateUserAvatarURLDB(ctx context.Context, userSystemID *string, avatarURL string) *typescore.WEvent {
+	// logrus.Info("🟨 UpdateUserAvatarURLDB")
+
+	if userSystemID == nil {
+		return &typescore.WEvent{
+			Err:  errors.New("user not found"),
+			Text: "user_is_not_found",
+		}
+	}
+	// Установить значение для avatar_url
+	var avatarValue interface{}
+	if avatarURL == "" {
+		avatarValue = nil
+	} else {
+		avatarValue = avatarURL
+	}
+
+	query, args, err := squirrel.StatementBuilder.PlaceholderFormat(squirrel.Dollar).
+		Update(TableName).
+		Set("avatar_url", avatarValue).
+		Where(squirrel.Eq{"system_id": *userSystemID}).
+		ToSql()
+
+	if err != nil {
+		return &typescore.WEvent{
+			Err:  err,
+			Text: "db_system_error",
+		}
+	}
+	// Получаем соединение из пула
+	conn, err := m.DatabasePull.Acquire(ctx)
+	if err != nil {
+		return &typescore.WEvent{
+			Err:  fmt.Errorf("failed_to_acquire_connection: %v", err),
+			Text: "failed_to_acquire_connection",
+		}
+	}
+	defer conn.Release() // Освобождаем соединение после использования
+	rows, err := conn.Query(ctx, query, args...)
+	if err != nil {
+		return &typescore.WEvent{
+			Err:  err,
+			Text: "db_system_error",
+		}
+	}
+	defer rows.Close()
+
+	return nil
 }
