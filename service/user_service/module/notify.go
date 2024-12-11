@@ -14,6 +14,10 @@ func (s *UserAccountServiceProto) sendLoginAlertNotification(userInfo *typescore
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
 	defer cancel()
 
+	if userInfo.NotificationEnabled == nil || !*userInfo.NotificationEnabled {
+		return nil
+	}
+
 	if authType == nil {
 		return errors.New("unexpected_auth_type")
 	}

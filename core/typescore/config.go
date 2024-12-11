@@ -19,6 +19,7 @@ type Config struct {
 		Secret   string `yaml:"secret" env-required:"true"`
 		Endpoint string `yaml:"endpoint" env-required:"true"`
 		Bucket   string `yaml:"bucket" env-required:"true"`
+		Region   string `yaml:"region" env-required:"true"`
 	} `yaml:"ali_cloud_oss_storage" env-required:"true"`
 	SMTPMailServer struct {
 		BaseMail     string `yaml:"base_mail" env-required:"true"`

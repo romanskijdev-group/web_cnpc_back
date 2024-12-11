@@ -127,3 +127,20 @@ func (s *UserAccountServiceProto) UpdateUserAlerts(ctx context.Context, obj *pro
 	}
 	return marshalleruseralerts.UserAlertMsgListSerialization(alerts), nil
 }
+
+// обновление аватара пользователя
+func (s *UserAccountServiceProto) UpdateUserAvatarURL(ctx context.Context, obj *protoobj.UpdateUserAvatarURLReq) (*protoobj.Empty, error) {
+	// logrus.Info("🚀 UpdateUserAvatarURL")
+	userSystemID, avatarURL := marshallerusers.UpdateUserAvatarURLReqDeserialization(obj)
+
+	if avatarURL == nil {
+		empty := ""
+		avatarURL = &empty
+	}
+
+	errW := s.ipc.Database.UsersActions.UpdateUserAvatarURLDB(ctx, userSystemID, *avatarURL)
+	if errW != nil {
+		return nil, errW.Err
+	}
+	return nil, nil
+}
