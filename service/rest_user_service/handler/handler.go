@@ -5,6 +5,7 @@ import (
 	"cnpc_backend/core/typescore"
 	"cnpc_backend/rest_user_service/types"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/go-chi/chi/v5"
 	"log"
@@ -24,6 +25,17 @@ type WrapHandlerParams struct {
 func WrapHandlerF(p WrapHandlerParams) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		response := &typescore.Response{}
+		ip := r.RemoteAddr
+
+		detectorIP, _, err := detectIpPositions(p.Ipc, ip)
+		if err != nil {
+			errW := &typescore.WEvent{
+				Err:  errors.New("block ip"),
+				Text: "block_ip",
+			}
+			sendResponse(w, response, errW)
+			return
+		}
 
 		r, userObj, errW := p.ModuleRestAuth.CheckerRestAuth.ControlAuthRest(r, &typescore.ControlAuthRestParams{
 			UserAuthorizationChecked: p.UserAuthorizationChecked,
@@ -35,7 +47,7 @@ func WrapHandlerF(p WrapHandlerParams) http.HandlerFunc {
 			return
 		}
 
-		data, totalCount, errW := p.CustomFunc(w, r, userObj, nil)
+		data, totalCount, errW := p.CustomFunc(w, r, userObj, detectorIP)
 		if errW != nil {
 			sendResponse(w, response, errW)
 			return
@@ -123,4 +135,57 @@ func RegisterRoutesRelief(router *chi.Mux, routes []types.RouteParams, ipc *type
 			router.Put(rout.Url, WrapHandlerF(params))
 		}
 	}
+}
+
+func detectIpPositions(ipc *types.InternalProviderControl, ip string) (*typescore.DetectorIPStruct, string, error) {
+	detectorIPStruct, err := ipc.Modules.IPDetectorModule.IpWorker(ip)
+	if err != nil {
+		log.Println("💔 error get ip info0", err)
+		return nil, "", err
+	}
+	if detectorIPStruct == nil {
+		log.Println("💔 error get ip info1", err)
+		return nil, "", err
+	}
+	if detectorIPStruct.IsINBlackList == nil || *detectorIPStruct.IsINBlackList {
+		log.Println("💔 error get ip info2", err)
+		return nil, "", err
+	}
+	geoInfo := ""
+	if detectorIPStruct.RegionInfo != nil {
+		countryCode := ""
+		if detectorIPStruct.RegionInfo.CountryCode != nil {
+			countryCode = *detectorIPStruct.RegionInfo.CountryCode
+		} else {
+			err := errors.New("error detect CountryCode")
+			log.Println("💔 error get ip info4", err)
+		}
+		city := ""
+		if detectorIPStruct.RegionInfo.City != nil {
+			city = *detectorIPStruct.RegionInfo.City
+		} else {
+			err := errors.New("error detect City")
+			log.Println("💔 error get ip info5", err)
+		}
+		region := ""
+		if detectorIPStruct.RegionInfo.Region != nil {
+			region = *detectorIPStruct.RegionInfo.Region
+		} else {
+			err := errors.New("error detect Region")
+			log.Println("💔 error get ip info6", err)
+		}
+		detectIpEq := false
+		if detectorIPStruct.IP != nil {
+			detectIpEq = *detectorIPStruct.IP == ip
+		} else {
+			err := errors.New("error detect IP")
+			log.Println("💔 error get ip info7", err)
+		}
+
+		geoInfo = fmt.Sprintf("CountryCode: %s, City: %s, Region: %s |%t|", countryCode, city, region, detectIpEq)
+	} else {
+		err := errors.New("error get ip info3")
+		log.Println("💔 error get ip info3", err)
+	}
+	return detectorIPStruct, geoInfo, nil
 }

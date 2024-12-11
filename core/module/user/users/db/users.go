@@ -336,6 +336,11 @@ func (m *ModuleDB) UpdateUserLastLoginInfoDB(ctx context.Context, UsersProviderC
 		query = query.Set("last_login", UsersProviderControlObj.LastLogin)
 	}
 
+	if UsersProviderControlObj.LastIP != nil {
+		setUpdate = true
+		query = query.Set("last_ip", UsersProviderControlObj.LastIP)
+	}
+
 	if !setUpdate {
 		return &typescore.WEvent{
 			Err:  errors.New("no fields to update"),

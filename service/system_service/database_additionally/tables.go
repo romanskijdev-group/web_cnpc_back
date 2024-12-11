@@ -16,7 +16,10 @@ func MigrateTables(db *gorm.DB) error {
 		&typescore.UsersProviderControl{}: "users",
 		&typescore.APIAccess{}:            "api_access",
 		&typescore.LoginActivities{}:      "login_activities",
-		&typescore.SystemAlerts{}:         "user_alerts",
+		&typescore.UserSystemAlerts{}:     "user_alerts",
+		&typescore.BlackListIP{}:          "blacklist_ip",
+		&typescore.UsersSubscriptions{}:   "user_subscriptions",
+		&typescore.Subscription{}:         "subscriptions",
 	}
 	for model, tableName := range modelsToMigrate {
 		if err := MigrateModel(db, model, tableName); err != nil {

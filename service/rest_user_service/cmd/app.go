@@ -1,6 +1,7 @@
 package main
 
 import (
+	ipdetector "cnpc_backend/core/common/ip_detector"
 	"cnpc_backend/core/config"
 	restauthcore "cnpc_backend/core/module/rest_auth"
 	usersdb "cnpc_backend/core/module/user/users/db"
@@ -53,7 +54,8 @@ func initModules(configObj *typescore.Config, ipc *types.InternalProviderControl
 	}
 
 	ipc.Modules = types.Modules{
-		RestAuth: restauthcore.InitNewModule(configModules),
+		RestAuth:         restauthcore.InitNewModule(configModules),
+		IPDetectorModule: ipdetector.InitDetectorIP(configModules),
 	}
 
 	ipc.Database = types.DatabaseI{

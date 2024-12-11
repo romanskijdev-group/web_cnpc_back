@@ -140,7 +140,7 @@ func (h *HandlerUserProfile) SetUserAvatarHandler(w http.ResponseWriter, r *http
 
 	publicURL, err := h.ipc.Storage.UploadPublicFile(file, path, fileName)
 	if err != nil {
-		fmt.Errorf(err.Error())
+		_ = fmt.Errorf(err.Error())
 		return nil, nil, &typescore.WEvent{Err: err, Text: "invalid_request_body"}
 	}
 

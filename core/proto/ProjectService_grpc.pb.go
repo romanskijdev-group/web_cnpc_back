@@ -7,7 +7,10 @@
 package protoobj
 
 import (
+	context "context"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,6 +22,20 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProjectServiceClient interface {
+	// получение списка проектов
+	GetProjectsList(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error)
+	// получение проекта по параметрам
+	GetProject(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error)
+	// создание проекта
+	CreateProject(ctx context.Context, in *UsersMsgReq, opts ...grpc.CallOption) (*UsersMsgList, error)
+	// удаление проекта
+	DeleteProject(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error)
+	// изменение проекта
+	UpdateProject(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error)
+	// приглашение пользователя в проект
+	InviteUserToProject(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*Empty, error)
+	// подключение к проекту
+	ConnectToProject(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error)
 }
 
 type projectServiceClient struct {
@@ -29,10 +46,87 @@ func NewProjectServiceClient(cc grpc.ClientConnInterface) ProjectServiceClient {
 	return &projectServiceClient{cc}
 }
 
+func (c *projectServiceClient) GetProjectsList(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error) {
+	out := new(LogInInfoRes)
+	err := c.cc.Invoke(ctx, "/msg.ProjectService/GetProjectsList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) GetProject(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error) {
+	out := new(UsersMsg)
+	err := c.cc.Invoke(ctx, "/msg.ProjectService/GetProject", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) CreateProject(ctx context.Context, in *UsersMsgReq, opts ...grpc.CallOption) (*UsersMsgList, error) {
+	out := new(UsersMsgList)
+	err := c.cc.Invoke(ctx, "/msg.ProjectService/CreateProject", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) DeleteProject(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error) {
+	out := new(UsersMsg)
+	err := c.cc.Invoke(ctx, "/msg.ProjectService/DeleteProject", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) UpdateProject(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*UsersMsg, error) {
+	out := new(UsersMsg)
+	err := c.cc.Invoke(ctx, "/msg.ProjectService/UpdateProject", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) InviteUserToProject(ctx context.Context, in *UsersMsg, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/msg.ProjectService/InviteUserToProject", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) ConnectToProject(ctx context.Context, in *UserAuthReqAccountReq, opts ...grpc.CallOption) (*LogInInfoRes, error) {
+	out := new(LogInInfoRes)
+	err := c.cc.Invoke(ctx, "/msg.ProjectService/ConnectToProject", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProjectServiceServer is the server API for ProjectService service.
 // All implementations must embed UnimplementedProjectServiceServer
 // for forward compatibility
 type ProjectServiceServer interface {
+	// получение списка проектов
+	GetProjectsList(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error)
+	// получение проекта по параметрам
+	GetProject(context.Context, *UsersMsg) (*UsersMsg, error)
+	// создание проекта
+	CreateProject(context.Context, *UsersMsgReq) (*UsersMsgList, error)
+	// удаление проекта
+	DeleteProject(context.Context, *UsersMsg) (*UsersMsg, error)
+	// изменение проекта
+	UpdateProject(context.Context, *UsersMsg) (*UsersMsg, error)
+	// приглашение пользователя в проект
+	InviteUserToProject(context.Context, *UsersMsg) (*Empty, error)
+	// подключение к проекту
+	ConnectToProject(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error)
 	mustEmbedUnimplementedProjectServiceServer()
 }
 
@@ -40,6 +134,27 @@ type ProjectServiceServer interface {
 type UnimplementedProjectServiceServer struct {
 }
 
+func (UnimplementedProjectServiceServer) GetProjectsList(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProjectsList not implemented")
+}
+func (UnimplementedProjectServiceServer) GetProject(context.Context, *UsersMsg) (*UsersMsg, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProject not implemented")
+}
+func (UnimplementedProjectServiceServer) CreateProject(context.Context, *UsersMsgReq) (*UsersMsgList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProject not implemented")
+}
+func (UnimplementedProjectServiceServer) DeleteProject(context.Context, *UsersMsg) (*UsersMsg, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProject not implemented")
+}
+func (UnimplementedProjectServiceServer) UpdateProject(context.Context, *UsersMsg) (*UsersMsg, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProject not implemented")
+}
+func (UnimplementedProjectServiceServer) InviteUserToProject(context.Context, *UsersMsg) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InviteUserToProject not implemented")
+}
+func (UnimplementedProjectServiceServer) ConnectToProject(context.Context, *UserAuthReqAccountReq) (*LogInInfoRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectToProject not implemented")
+}
 func (UnimplementedProjectServiceServer) mustEmbedUnimplementedProjectServiceServer() {}
 
 // UnsafeProjectServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -53,13 +168,168 @@ func RegisterProjectServiceServer(s grpc.ServiceRegistrar, srv ProjectServiceSer
 	s.RegisterService(&ProjectService_ServiceDesc, srv)
 }
 
+func _ProjectService_GetProjectsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserAuthReqAccountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).GetProjectsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.ProjectService/GetProjectsList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).GetProjectsList(ctx, req.(*UserAuthReqAccountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_GetProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsersMsg)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).GetProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.ProjectService/GetProject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).GetProject(ctx, req.(*UsersMsg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_CreateProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsersMsgReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).CreateProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.ProjectService/CreateProject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).CreateProject(ctx, req.(*UsersMsgReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_DeleteProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsersMsg)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).DeleteProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.ProjectService/DeleteProject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).DeleteProject(ctx, req.(*UsersMsg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_UpdateProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsersMsg)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).UpdateProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.ProjectService/UpdateProject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).UpdateProject(ctx, req.(*UsersMsg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_InviteUserToProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsersMsg)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).InviteUserToProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.ProjectService/InviteUserToProject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).InviteUserToProject(ctx, req.(*UsersMsg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_ConnectToProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserAuthReqAccountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).ConnectToProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/msg.ProjectService/ConnectToProject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).ConnectToProject(ctx, req.(*UserAuthReqAccountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProjectService_ServiceDesc is the grpc.ServiceDesc for ProjectService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ProjectService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "msg.ProjectService",
 	HandlerType: (*ProjectServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "service/ProjectService.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetProjectsList",
+			Handler:    _ProjectService_GetProjectsList_Handler,
+		},
+		{
+			MethodName: "GetProject",
+			Handler:    _ProjectService_GetProject_Handler,
+		},
+		{
+			MethodName: "CreateProject",
+			Handler:    _ProjectService_CreateProject_Handler,
+		},
+		{
+			MethodName: "DeleteProject",
+			Handler:    _ProjectService_DeleteProject_Handler,
+		},
+		{
+			MethodName: "UpdateProject",
+			Handler:    _ProjectService_UpdateProject_Handler,
+		},
+		{
+			MethodName: "InviteUserToProject",
+			Handler:    _ProjectService_InviteUserToProject_Handler,
+		},
+		{
+			MethodName: "ConnectToProject",
+			Handler:    _ProjectService_ConnectToProject_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "service/ProjectService.proto",
 }

@@ -5,3 +5,9 @@ other="Success login"
 
 [body_new_login]
 other="You have been successfully logged in using <<service>>"
+
+[title_new_device]
+other="Logged in from a new device"
+
+[body_new_device]
+other="Logged in from new device using in <<ip>>. If it wasn't you, then take action to protect your accounts!"

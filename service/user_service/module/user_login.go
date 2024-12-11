@@ -1,7 +1,6 @@
 package module
 
 import (
-	marshallernotification "cnpc_backend/core/module/notification/marshaller"
 	protoobj "cnpc_backend/core/proto"
 	"cnpc_backend/core/typescore"
 	"context"
@@ -66,19 +65,9 @@ func (s *UserAccountServiceProto) userAuthNewInfoCombat(userObj *typescore.Users
 	userObj.LastLogin = &lastLogin
 
 	if updateIpLogin {
-		categoryNotifyNewDevice := typescore.DeviceNewNotifyCategory
-		// Текст уведомления о новом устройстве
-		textNotify := "New device login: " + *newUserIp
-		// Сериализуем параметры уведомления
-		notifyParamsPr := marshallernotification.NotifyParamsSerialization(&typescore.NotifyParams{
-			Text:          &textNotify,
-			SystemUserIDs: []*string{userObj.SystemID},
-			Category:      &categoryNotifyNewDevice,
-		})
-		// Отправляем уведомление пользователю о новом IP-адресе
-		_, err := s.ipc.Clients.NotificationServiceProto.NotifyUser(ctx, notifyParamsPr)
+		err := s.sendDeviceAlertNotification(userObj, newUserIp)
 		if err != nil {
-			log.Println("🔴 error UserLoginAccount: NotifyUser: ", err)
+			log.Println("🔴 error userAuthNewInfoCombat: sendDeviceAlertNotification: ", err)
 		}
 	}
 

@@ -2,5 +2,33 @@ syntax = "proto3";
 package msg;
 option go_package = "./proto;protoobj";
 
+import "messages/UsersMsg.proto";
+import "messages/UsersMsgList.proto";
+import "messages/UpdateUserAvatarURLReq.proto";
+import "messages/Empty.proto";
+import "messages/LogInInfoRes.proto";
+import "messages/UserAuthReqAccountReq.proto";
+import "messages/UserSystemAlerts.proto";
+
 service ProjectService {
+  // получение списка проектов
+  rpc GetProjectsList(UserAuthReqAccountReq) returns (LogInInfoRes) {}
+
+  // получение проекта по параметрам
+  rpc GetProject(UsersMsg) returns (UsersMsg) {}  //
+
+  // создание проекта
+  rpc CreateProject(UsersMsgReq) returns (UsersMsgList) {}
+
+  // удаление проекта
+  rpc DeleteProject(UsersMsg) returns (UsersMsg) {}
+
+  // изменение проекта
+  rpc UpdateProject(UsersMsg) returns (UsersMsg) {}
+
+  // приглашение пользователя в проект
+  rpc InviteUserToProject(UsersMsg) returns (Empty) {}
+
+  // подключение к проекту
+  rpc ConnectToProject(UserAuthReqAccountReq) returns (LogInInfoRes) {}
 }
